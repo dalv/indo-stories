@@ -45,17 +45,6 @@ export default function Home() {
             paragraphs={paragraphs}
             spokenWordIndex={showEnglish ? -1 : audio.currentWordIndex}
           />
-          <AudioPlayer
-            isVisible={!showEnglish}
-            isPlaying={audio.isPlaying}
-            currentTime={audio.currentTime}
-            duration={audio.duration}
-            playbackRate={audio.playbackRate}
-            onPlayPause={audio.playPause}
-            onSkip={audio.skip}
-            onScrub={audio.scrub}
-            onSpeedChange={audio.cycleSpeed}
-          />
           <LanguageToggle
             showEnglish={showEnglish}
             onToggle={handleToggleLanguage}
@@ -63,6 +52,17 @@ export default function Home() {
           <div className="card-footer">{story.footer}</div>
         </div>
       </main>
+      <AudioPlayer
+        isVisible={!showEnglish}
+        isPlaying={audio.isPlaying}
+        currentTime={audio.currentTime}
+        duration={audio.duration}
+        playbackRate={audio.playbackRate}
+        onPlayPause={audio.playPause}
+        onSkip={audio.skip}
+        onScrub={audio.scrub}
+        onSpeedChange={audio.cycleSpeed}
+      />
     </>
   );
 }

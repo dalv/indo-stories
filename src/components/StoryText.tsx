@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 interface StoryTextProps {
   paragraphs: string[];
   spokenWordIndex: number; // -1 means no highlighting
+  onWordClick?: (word: string, paragraphIndex: number) => void;
 }
 
-export default function StoryText({ paragraphs, spokenWordIndex }: StoryTextProps) {
+export default function StoryText({ paragraphs, spokenWordIndex, onWordClick }: StoryTextProps) {
   const [fade, setFade] = useState(false);
   const [rendered, setRendered] = useState(paragraphs);
 
@@ -32,7 +33,8 @@ export default function StoryText({ paragraphs, spokenWordIndex }: StoryTextProp
               return (
                 <span
                   key={ti}
-                  className={`word${idx <= spokenWordIndex ? " spoken" : ""}`}
+                  className={`word${idx <= spokenWordIndex ? " spoken" : ""}${onWordClick ? " tappable" : ""}`}
+                  onClick={onWordClick ? () => onWordClick(token, pi) : undefined}
                 >
                   {token}
                 </span>

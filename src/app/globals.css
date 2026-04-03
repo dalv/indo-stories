@@ -54,7 +54,22 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 
 /* Word highlighting */
 .story span.word{transition:color 0.15s}
+.story span.tappable{cursor:pointer;border-radius:2px}
+.story span.tappable:hover{background:#f0e8dc}
 .story span.spoken{color:#c4956a}
+
+/* Word popup */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem}
+.popup-card{background:#fffdf9;border-radius:14px;padding:1.8rem 2rem 1.5rem;max-width:340px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;animation:popupIn 0.2s ease}
+.popup-close{position:absolute;top:0.6rem;right:0.8rem;border:none;background:none;font-size:1.4rem;color:#b0a393;cursor:pointer;line-height:1;padding:0.2rem}
+.popup-close:hover{color:#3a2e24}
+.popup-word{font-size:1.3rem;font-weight:500;color:#c4956a;margin-bottom:0.8rem}
+.popup-translation{font-family:var(--font-dm-sans),sans-serif;font-size:0.95rem;color:#3a2e24;font-weight:500;margin-bottom:0.6rem}
+.popup-explanation{font-family:var(--font-dm-sans),sans-serif;font-size:0.85rem;color:#7a6e62;line-height:1.6}
+.popup-loading{display:flex;justify-content:center;padding:1rem 0}
+.popup-spinner{width:24px;height:24px;border:3px solid #e8e0d4;border-top-color:#c4956a;border-radius:50%;animation:spin 0.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes popupIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
 
 /* Fade transition */
 .story{transition:opacity 0.25s ease}

@@ -5,14 +5,9 @@ interface LanguageToggleProps {
 
 export default function LanguageToggle({ showEnglish, onToggle }: LanguageToggleProps) {
   return (
-    <div className="toggle-bar">
-      <span className={`toggle-label${!showEnglish ? " active" : ""}`}>Bahasa</span>
-      <button
-        className={`toggle-switch${showEnglish ? " on" : ""}`}
-        onClick={onToggle}
-        aria-label="Toggle language"
-      />
-      <span className={`toggle-label${showEnglish ? " active" : ""}`}>English</span>
-    </div>
+    <button className="lang-pill" onClick={onToggle} aria-label="Toggle language">
+      <span className={`lang-pill-option${!showEnglish ? " active" : ""}`}>ID</span>
+      <span className={`lang-pill-option${showEnglish ? " active" : ""}`}>EN</span>
+    </button>
   );
 }

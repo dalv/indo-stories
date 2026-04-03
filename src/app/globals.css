@@ -4,6 +4,7 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 /* Sidebar */
 .sidebar{width:260px;min-height:100vh;background:#fffdf9;border-right:1px solid #e8e0d4;padding:2rem 0;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:10}
 .sidebar-header{padding:0 1.5rem 1.5rem;border-bottom:1px solid #e8e0d4}
+.sidebar-header-row{display:flex;align-items:center;justify-content:space-between}
 .sidebar-title{font-size:1.15rem;font-weight:500;color:#3a2e24;letter-spacing:0.02em}
 .sidebar-subtitle{font-family:var(--font-dm-sans),sans-serif;font-size:0.7rem;color:#b0a393;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.35rem}
 .story-list{padding:1rem 0;flex:1;overflow-y:auto}
@@ -24,13 +25,9 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 .story p:last-child{margin-bottom:0}
 
 /* Language toggle */
-.toggle-bar{display:flex;align-items:center;justify-content:center;margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid #ede7dd;gap:0.75rem}
-.toggle-label{font-family:var(--font-dm-sans),sans-serif;font-size:0.78rem;color:#b0a393;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
-.toggle-label.active{color:#3a2e24;font-weight:500}
-.toggle-switch{width:44px;height:24px;background:#e8e0d4;border-radius:12px;cursor:pointer;position:relative;transition:background 0.3s;border:none;padding:0;flex-shrink:0}
-.toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fffdf9;border-radius:50%;transition:transform 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
-.toggle-switch.on{background:#c4956a}
-.toggle-switch.on::after{transform:translateX(20px)}
+.lang-pill{display:flex;background:#f0e8dc;border-radius:8px;border:none;padding:2px;cursor:pointer;gap:1px;flex-shrink:0}
+.lang-pill-option{font-family:var(--font-dm-sans),sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.04em;padding:0.25rem 0.55rem;border-radius:6px;color:#b0a393;transition:all 0.2s}
+.lang-pill-option.active{background:#fffdf9;color:#3a2e24;box-shadow:0 1px 2px rgba(0,0,0,0.08)}
 
 .card-footer{margin-top:1.8rem;text-align:center;font-family:var(--font-dm-sans),sans-serif;font-size:0.72rem;color:#b0a393;letter-spacing:0.08em;text-transform:uppercase}
 

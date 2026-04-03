@@ -1,7 +1,9 @@
 export interface Story {
   id: string;
   menuTitle: string;
+  menuTitleEn: string;
   title: string;
+  titleEn: string;
   footer: string;
   indo: string[];
   english: string[];
@@ -11,7 +13,9 @@ export const stories: Story[] = [
   {
     id: "pijat",
     menuTitle: "Tukang pijat dari Bali",
+    menuTitleEn: "Massage therapist from Bali",
     title: "Cerita dari tukang pijat",
+    titleEn: "Story from the massage therapist",
     footer: "Bali · Romania",
     indo: [
       "Jadi, saya tinggal di Bali tapi setiap tahun pulang ke Romania beberapa minggu. Keluarga saya di sana.",
@@ -31,7 +35,9 @@ export const stories: Story[] = [
   {
     id: "laundry",
     menuTitle: "Baju yang hilang",
+    menuTitleEn: "The missing clothes",
     title: "Cerita dari tempat laundry",
+    titleEn: "Story from the laundry place",
     footer: "Bali",
     indo: [
       "Jadi kemarin saya antar cucian ke tempat laundry dekat rumah.",

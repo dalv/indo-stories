@@ -1,17 +1,25 @@
+import { ReactNode } from "react";
 import { Story } from "@/data/stories";
 
 interface SidebarProps {
   stories: Story[];
   currentIndex: number;
+  showEnglish: boolean;
   onSelect: (index: number) => void;
+  children?: ReactNode;
 }
 
-export default function Sidebar({ stories, currentIndex, onSelect }: SidebarProps) {
+export default function Sidebar({ stories, currentIndex, showEnglish, onSelect, children }: SidebarProps) {
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
-        <div className="sidebar-title">Cerita-Cerita Saya</div>
-        <div className="sidebar-subtitle">My Indonesian stories</div>
+        <div className="sidebar-header-row">
+          <div>
+            <div className="sidebar-title">Cerita-Cerita Saya</div>
+            <div className="sidebar-subtitle">My Indonesian stories</div>
+          </div>
+          {children}
+        </div>
       </div>
       <div className="story-list">
         {stories.map((s, i) => (
@@ -20,8 +28,8 @@ export default function Sidebar({ stories, currentIndex, onSelect }: SidebarProp
             className={`story-item${i === currentIndex ? " active" : ""}`}
             onClick={() => onSelect(i)}
           >
-            <span className="story-number">Cerita {i + 1}</span>
-            {s.menuTitle}
+            <span className="story-number">{showEnglish ? "Story" : "Cerita"} {i + 1}</span>
+            {showEnglish ? s.menuTitleEn : s.menuTitle}
           </button>
         ))}
       </div>

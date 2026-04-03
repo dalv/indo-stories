@@ -64,7 +64,6 @@ export default function Home() {
   const handleSelectStory = (index: number) => {
     audio.stop();
     setCurrentIndex(index);
-    setShowEnglish(false);
   };
 
   const handleToggleLanguage = () => {
@@ -79,22 +78,24 @@ export default function Home() {
       <Sidebar
         stories={stories}
         currentIndex={currentIndex}
+        showEnglish={showEnglish}
         onSelect={handleSelectStory}
-      />
+      >
+        <LanguageToggle
+          showEnglish={showEnglish}
+          onToggle={handleToggleLanguage}
+        />
+      </Sidebar>
       <main className="main">
         <div className="card">
           <div className="header">
-            <h1 className="title">{story.title}</h1>
+            <h1 className="title">{showEnglish ? story.titleEn : story.title}</h1>
             <div className="divider" />
           </div>
           <StoryText
             paragraphs={paragraphs}
             spokenWordIndex={showEnglish ? -1 : audio.currentWordIndex}
             onWordClick={showEnglish ? undefined : handleWordClick}
-          />
-          <LanguageToggle
-            showEnglish={showEnglish}
-            onToggle={handleToggleLanguage}
           />
           <div className="card-footer">{story.footer}</div>
         </div>

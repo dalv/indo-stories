@@ -21,7 +21,7 @@ if (!API_KEY) {
 
 // Pick a good multilingual voice
 // You can change this to any voice_id from your ElevenLabs account
-const VOICE_ID = "JBFqnCBsd6RMkjVDRZzb"; // George (male)
+const VOICE_ID = "3rL9ZxRgBgIkh4tcbrEH"; // Deden Cahya - Warm, Calm and Clear
 const MODEL_ID = "eleven_multilingual_v2";
 
 interface Story {

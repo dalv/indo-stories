@@ -83,9 +83,9 @@ async function generateForStory(story: Story, force: boolean) {
         model_id: MODEL_ID,
         language_code: "id",
         voice_settings: {
-          stability: 0.5,
+          stability: 0.4,
           similarity_boost: 0.75,
-          style: 0.3,
+          style: 0.45,
         },
       }),
     }

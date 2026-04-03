@@ -18,7 +18,7 @@ export default function Sidebar({ stories, currentIndex, showEnglish, onSelect, 
             <div className="sidebar-title">Cerita-Cerita Saya</div>
             <div className="sidebar-subtitle">My Indonesian stories</div>
           </div>
-          {children}
+          <div className="lang-pill-mobile">{children}</div>
         </div>
       </div>
       <div className="story-list">
@@ -33,7 +33,10 @@ export default function Sidebar({ stories, currentIndex, showEnglish, onSelect, 
           </button>
         ))}
       </div>
-      <div className="sidebar-footer">More stories coming soon</div>
+      <div className="sidebar-bottom">
+        <div className="lang-pill-desktop">{children}</div>
+        <div className="sidebar-footer">More stories coming soon</div>
+      </div>
     </nav>
   );
 }

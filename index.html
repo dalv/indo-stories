@@ -23,8 +23,8 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
 
 /* Main content */
 .main{margin-left:260px;flex:1;display:flex;align-items:center;justify-content:center;padding:2.5rem}
-.card{background:#fffdf9;max-width:580px;width:100%;padding:3rem 3rem 2rem;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06);position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c4956a,#d4a97a,#e8c9a0)}
+.card{background:#fffdf9;max-width:580px;width:100%;padding:3rem 3rem 2rem;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06);position:relative}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c4956a,#d4a97a,#e8c9a0);border-radius:16px 16px 0 0}
 .header{text-align:center;margin-bottom:2.2rem}
 .title{font-size:1.4rem;font-weight:500;color:#3a2e24;letter-spacing:0.02em;margin-bottom:0.5rem}
 .divider{width:60px;height:1px;background:#c4956a;margin:0 auto;opacity:0.6}
@@ -42,6 +42,28 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
 
 .card-footer{margin-top:1.8rem;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.72rem;color:#b0a393;letter-spacing:0.08em;text-transform:uppercase}
 
+/* Audio controls */
+.audio-bar{display:flex;align-items:center;gap:0.6rem;margin-top:1.8rem;padding:0.9rem 1rem;background:#f9f5ef;border-radius:10px}
+.audio-btn{width:34px;height:34px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#7a6e62;transition:all 0.2s;flex-shrink:0;padding:0}
+.audio-btn:hover{background:#ede7dd;color:#3a2e24}
+.audio-btn.playing{color:#c4956a}
+.audio-btn svg{width:18px;height:18px;fill:currentColor}
+.audio-btn.play-btn{width:40px;height:40px;background:#c4956a;color:#fffdf9;border-radius:50%}
+.audio-btn.play-btn:hover{background:#b8875e}
+.audio-btn.play-btn svg{width:18px;height:18px}
+.scrub-container{flex:1;display:flex;flex-direction:column;gap:0.25rem;min-width:0}
+.scrub-bar{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:#e8e0d4;border-radius:3px;outline:none;cursor:pointer}
+.scrub-bar::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#c4956a;border-radius:50%;cursor:pointer;margin-top:0}
+.scrub-bar::-moz-range-thumb{width:14px;height:14px;background:#c4956a;border-radius:50%;cursor:pointer;border:none}
+.scrub-bar::-webkit-slider-runnable-track{height:6px;border-radius:3px}
+.scrub-bar::-moz-range-track{height:6px;border-radius:3px;background:#e8e0d4}
+.audio-time{font-family:'DM Sans',sans-serif;font-size:0.68rem;color:#b0a393;text-align:right;min-width:3.2rem;flex-shrink:0}
+.speed-btn{font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:600;color:#7a6e62;min-width:2.2rem;text-align:center}
+
+/* Word highlighting */
+.story span.word{transition:color 0.15s}
+.story span.spoken{color:#c4956a}
+
 /* Fade transition */
 .story{transition:opacity 0.25s ease}
 .story.fade{opacity:0}
@@ -49,7 +71,7 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
 /* Mobile */
 @media(max-width:768px){
   body{flex-direction:column}
-  .sidebar{width:100%;min-height:auto;position:sticky;top:0;bottom:auto;left:auto;border-right:none;border-bottom:1px solid #e8e0d4;padding:1rem 0 0}
+  .sidebar{width:100%;min-height:auto;position:sticky;top:0;bottom:auto;left:auto;border-right:none;border-bottom:1px solid #e8e0d4;padding:1rem 0 0;overflow:hidden}
   .sidebar-header{padding:0 1.2rem 0.6rem}
   .story-list{display:flex;flex-direction:row;overflow-x:auto;overflow-y:visible;padding:0 1rem 0;gap:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:none}
   .story-list::-webkit-scrollbar{display:none}
@@ -58,8 +80,13 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
   .story-item.active{background:transparent;border-left-color:transparent;border-bottom-color:#c4956a}
   .story-number{display:inline;margin-right:0.3rem;margin-bottom:0}
   .sidebar-footer{display:none}
-  .main{margin-left:0;padding:1.5rem 1rem;min-height:calc(100vh - 140px)}
+  .main{margin-left:0;padding:1.5rem 1rem;min-height:calc(100vh - 140px);align-items:flex-start}
   .card{padding:2rem 1.5rem 1.5rem}
+  .audio-bar{gap:0.4rem;padding:0.75rem 0.6rem}
+  .audio-btn{width:30px;height:30px}
+  .audio-btn.play-btn{width:36px;height:36px}
+  .audio-btn svg{width:16px;height:16px}
+  .audio-time{font-size:0.62rem;min-width:2.6rem}
 }
 </style>
 </head>
@@ -81,6 +108,23 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
       <div class="divider"></div>
     </div>
     <div class="story" id="storyContent"></div>
+    <div class="audio-bar" id="audioBar">
+      <button class="audio-btn" onclick="audioSkip(-5)" aria-label="Back 5 seconds">
+        <svg viewBox="0 0 24 24"><path d="M12.5 3C7.81 3 4.01 6.54 3.56 11H1l3.5 4 3.5-4H5.57C6.01 7.65 8.97 5 12.5 5c3.87 0 7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C7.88 20.1 10.05 21 12.5 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/><text x="12.5" y="14.5" text-anchor="middle" font-size="7" font-family="sans-serif" fill="currentColor" font-weight="700">5</text></svg>
+      </button>
+      <button class="audio-btn play-btn" id="playBtn" onclick="toggleAudio()" aria-label="Play">
+        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <button class="audio-btn" onclick="audioSkip(5)" aria-label="Forward 5 seconds">
+        <svg viewBox="0 0 24 24"><path d="M11.5 3c4.69 0 8.49 3.54 8.94 8H23l-3.5 4-3.5-4h2.01C17.59 7.65 14.63 5 11.1 5c-3.87 0-7 3.13-7 7s3.13 7 7 7c1.93 0 3.68-.79 4.94-2.06l1.42 1.42C15.72 20.1 13.55 21 11.1 21c-4.97 0-9-4.03-9-9s4.03-9 9-9z"/><text x="11.5" y="14.5" text-anchor="middle" font-size="7" font-family="sans-serif" fill="currentColor" font-weight="700">5</text></svg>
+      </button>
+      <div class="scrub-container">
+        <input type="range" class="scrub-bar" id="scrubBar" min="0" max="100" value="0" oninput="scrubAudio(this.value)">
+      </div>
+      <span class="audio-time" id="audioTime">0:00</span>
+      <button class="audio-btn speed-btn" onclick="cycleSpeed()" id="speedBtn">1x</button>
+    </div>
     <div class="toggle-bar">
       <span class="toggle-label active" id="labelIndo">Bahasa</span>
       <button class="toggle-switch" id="langToggle" onclick="toggleLanguage()" aria-label="Toggle language"></button>
@@ -143,6 +187,21 @@ const stories = [
 let currentStory = 0;
 let showEnglish = false;
 
+// Audio state
+let synth = window.speechSynthesis;
+let currentUtterance = null;
+let isPlaying = false;
+let isPaused = false;
+let allWords = [];       // flat array of {text, el} for every word in the story
+let wordIndex = 0;       // which word we're about to speak
+let totalWords = 0;
+let speechRate = 0.85;
+const speeds = [0.7, 0.85, 1, 1.2];
+let speedIdx = 1;
+let elapsedMs = 0;
+let estimatedTotalMs = 0;
+let timerInterval = null;
+
 function renderMenu() {
   const list = document.getElementById('storyList');
   list.innerHTML = stories.map((s, i) =>
@@ -161,14 +220,33 @@ function renderStory() {
   document.getElementById('storyTitle').textContent = s.title;
   document.getElementById('storyFooter').textContent = s.footer;
 
+  // Show/hide audio bar — only for Indonesian
+  document.getElementById('audioBar').style.display = showEnglish ? 'none' : 'flex';
+
   content.classList.add('fade');
   setTimeout(() => {
-    content.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+    content.innerHTML = paragraphs.map(p => {
+      const words = p.split(/(\s+)/).map(token => {
+        if (/^\s+$/.test(token)) return token;
+        return `<span class="word">${token}</span>`;
+      }).join('');
+      return `<p>${words}</p>`;
+    }).join('');
     content.classList.remove('fade');
+    indexWords();
   }, 250);
 }
 
+function indexWords() {
+  allWords = [];
+  document.querySelectorAll('#storyContent span.word').forEach(el => {
+    allWords.push({ text: el.textContent, el });
+  });
+  totalWords = allWords.length;
+}
+
 function selectStory(index) {
+  stopAudio();
   currentStory = index;
   showEnglish = false;
   updateToggleUI();
@@ -177,6 +255,7 @@ function selectStory(index) {
 }
 
 function toggleLanguage() {
+  stopAudio();
   showEnglish = !showEnglish;
   updateToggleUI();
   renderStory();
@@ -195,6 +274,204 @@ function updateToggleUI() {
     labelIndo.classList.add('active');
     labelEng.classList.remove('active');
   }
+}
+
+// ---- Audio engine ----
+
+function getIndonesianVoice() {
+  const voices = synth.getVoices();
+  return voices.find(v => v.lang.startsWith('id')) || voices.find(v => v.lang.startsWith('ms')) || null;
+}
+
+function speakFromWord(startIdx) {
+  synth.cancel();
+  if (startIdx >= totalWords) { finishAudio(); return; }
+
+  // Build text from startIdx onward, tracking word boundaries
+  const wordsToSpeak = allWords.slice(startIdx);
+  const text = wordsToSpeak.map(w => w.text).join(' ');
+
+  const utt = new SpeechSynthesisUtterance(text);
+  const voice = getIndonesianVoice();
+  if (voice) utt.voice = voice;
+  utt.lang = 'id-ID';
+  utt.rate = speechRate;
+
+  let localWordIdx = 0;
+
+  utt.onboundary = (e) => {
+    if (e.name === 'word') {
+      // Mark all words up to current as spoken
+      const globalIdx = startIdx + localWordIdx;
+      for (let i = 0; i <= globalIdx && i < totalWords; i++) {
+        allWords[i].el.classList.add('spoken');
+      }
+      // Remove spoken from words after current
+      for (let i = globalIdx + 1; i < totalWords; i++) {
+        allWords[i].el.classList.remove('spoken');
+      }
+      wordIndex = globalIdx + 1;
+      updateScrubBar();
+      localWordIdx++;
+    }
+  };
+
+  utt.onend = () => {
+    // Mark all remaining words as spoken
+    for (let i = startIdx; i < totalWords; i++) {
+      allWords[i].el.classList.add('spoken');
+    }
+    wordIndex = totalWords;
+    updateScrubBar();
+    finishAudio();
+  };
+
+  currentUtterance = utt;
+  synth.speak(utt);
+
+  // Chrome bug workaround: chrome pauses after ~15s, restart it
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (isPlaying && synth.speaking && !synth.paused) {
+      elapsedMs += 200;
+      updateTimeDisplay();
+      // Chrome workaround
+      synth.pause();
+      synth.resume();
+    }
+  }, 200);
+}
+
+function toggleAudio() {
+  if (isPlaying && !isPaused) {
+    // Pause
+    synth.pause();
+    isPaused = true;
+    clearInterval(timerInterval);
+    updatePlayButton();
+    return;
+  }
+  if (isPaused) {
+    // Resume
+    synth.resume();
+    isPaused = false;
+    timerInterval = setInterval(() => {
+      if (isPlaying && synth.speaking && !synth.paused) {
+        elapsedMs += 200;
+        updateTimeDisplay();
+        synth.pause();
+        synth.resume();
+      }
+    }, 200);
+    updatePlayButton();
+    return;
+  }
+  // Start fresh
+  if (showEnglish) return;
+  isPlaying = true;
+  isPaused = false;
+  elapsedMs = 0;
+  // Estimate total duration: ~250ms per word at rate 1
+  estimatedTotalMs = (totalWords * 250) / speechRate;
+  clearHighlights();
+  speakFromWord(wordIndex >= totalWords ? 0 : wordIndex);
+  if (wordIndex >= totalWords) wordIndex = 0;
+  updatePlayButton();
+}
+
+function stopAudio() {
+  synth.cancel();
+  isPlaying = false;
+  isPaused = false;
+  wordIndex = 0;
+  elapsedMs = 0;
+  clearInterval(timerInterval);
+  clearHighlights();
+  updatePlayButton();
+  updateScrubBar();
+  updateTimeDisplay();
+}
+
+function finishAudio() {
+  isPlaying = false;
+  isPaused = false;
+  clearInterval(timerInterval);
+  updatePlayButton();
+}
+
+function audioSkip(seconds) {
+  if (!isPlaying && wordIndex === 0) return;
+  // Approximate: skip by word count
+  const wordsToSkip = Math.round((Math.abs(seconds) * 1000) / (250 / speechRate));
+  let newIdx = seconds > 0 ? wordIndex + wordsToSkip : wordIndex - wordsToSkip;
+  newIdx = Math.max(0, Math.min(newIdx, totalWords - 1));
+  wordIndex = newIdx;
+
+  // Update highlights
+  for (let i = 0; i < totalWords; i++) {
+    if (i < wordIndex) allWords[i].el.classList.add('spoken');
+    else allWords[i].el.classList.remove('spoken');
+  }
+  updateScrubBar();
+
+  if (isPlaying) {
+    isPaused = false;
+    speakFromWord(wordIndex);
+    updatePlayButton();
+  }
+}
+
+function scrubAudio(value) {
+  const newIdx = Math.round((value / 100) * totalWords);
+  wordIndex = Math.max(0, Math.min(newIdx, totalWords));
+
+  for (let i = 0; i < totalWords; i++) {
+    if (i < wordIndex) allWords[i].el.classList.add('spoken');
+    else allWords[i].el.classList.remove('spoken');
+  }
+
+  if (isPlaying) {
+    isPaused = false;
+    speakFromWord(wordIndex);
+    updatePlayButton();
+  }
+}
+
+function cycleSpeed() {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speechRate = speeds[speedIdx];
+  document.getElementById('speedBtn').textContent = speeds[speedIdx] + 'x';
+  if (isPlaying && !isPaused) {
+    speakFromWord(wordIndex > 0 ? wordIndex - 1 : 0);
+  }
+}
+
+function updatePlayButton() {
+  const playing = isPlaying && !isPaused;
+  document.getElementById('playIcon').style.display = playing ? 'none' : 'block';
+  document.getElementById('pauseIcon').style.display = playing ? 'block' : 'none';
+  document.getElementById('playBtn').classList.toggle('playing', playing);
+}
+
+function updateScrubBar() {
+  const pct = totalWords > 0 ? (wordIndex / totalWords) * 100 : 0;
+  document.getElementById('scrubBar').value = pct;
+}
+
+function updateTimeDisplay() {
+  const secs = Math.floor(elapsedMs / 1000);
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  document.getElementById('audioTime').textContent = m + ':' + String(s).padStart(2, '0');
+}
+
+function clearHighlights() {
+  allWords.forEach(w => w.el.classList.remove('spoken'));
+}
+
+// Load voices (some browsers load async)
+if (synth.onvoiceschanged !== undefined) {
+  synth.onvoiceschanged = () => {};
 }
 
 renderMenu();

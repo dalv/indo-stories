@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerita-Cerita Saya</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;display:flex;background:#f4f1ec;font-family:'Lora',serif}
+
+/* Sidebar */
+.sidebar{width:260px;min-height:100vh;background:#fffdf9;border-right:1px solid #e8e0d4;padding:2rem 0;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:10}
+.sidebar-header{padding:0 1.5rem 1.5rem;border-bottom:1px solid #e8e0d4}
+.sidebar-title{font-size:1.15rem;font-weight:500;color:#3a2e24;letter-spacing:0.02em}
+.sidebar-subtitle{font-family:'DM Sans',sans-serif;font-size:0.7rem;color:#b0a393;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.35rem}
+.story-list{padding:1rem 0;flex:1;overflow-y:auto}
+.story-item{display:block;width:100%;padding:0.85rem 1.5rem;border:none;background:none;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#7a6e62;transition:all 0.2s ease;border-left:3px solid transparent;line-height:1.4}
+.story-item:hover{background:#f9f5ef;color:#4a3f35}
+.story-item.active{background:#f9f5ef;color:#3a2e24;border-left-color:#c4956a;font-weight:500}
+.story-number{font-size:0.65rem;color:#b0a393;letter-spacing:0.08em;text-transform:uppercase;display:block;margin-bottom:0.15rem}
+.sidebar-footer{padding:1rem 1.5rem;border-top:1px solid #e8e0d4;font-family:'DM Sans',sans-serif;font-size:0.7rem;color:#c4b8a8;text-align:center}
+
+/* Main content */
+.main{margin-left:260px;flex:1;display:flex;align-items:center;justify-content:center;padding:2.5rem}
+.card{background:#fffdf9;max-width:580px;width:100%;padding:3rem 3rem 2rem;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c4956a,#d4a97a,#e8c9a0)}
+.header{text-align:center;margin-bottom:2.2rem}
+.title{font-size:1.4rem;font-weight:500;color:#3a2e24;letter-spacing:0.02em;margin-bottom:0.5rem}
+.divider{width:60px;height:1px;background:#c4956a;margin:0 auto;opacity:0.6}
+.story p{font-size:1.02rem;line-height:1.85;color:#4a3f35;margin-bottom:1.1em;font-weight:400}
+.story p:last-child{margin-bottom:0}
+
+/* Language toggle */
+.toggle-bar{display:flex;align-items:center;justify-content:center;margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid #ede7dd;gap:0.75rem}
+.toggle-label{font-family:'DM Sans',sans-serif;font-size:0.78rem;color:#b0a393;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.toggle-label.active{color:#3a2e24;font-weight:500}
+.toggle-switch{width:44px;height:24px;background:#e8e0d4;border-radius:12px;cursor:pointer;position:relative;transition:background 0.3s;border:none;padding:0;flex-shrink:0}
+.toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fffdf9;border-radius:50%;transition:transform 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.toggle-switch.on{background:#c4956a}
+.toggle-switch.on::after{transform:translateX(20px)}
+
+.card-footer{margin-top:1.8rem;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.72rem;color:#b0a393;letter-spacing:0.08em;text-transform:uppercase}
+
+/* Fade transition */
+.story{transition:opacity 0.25s ease}
+.story.fade{opacity:0}
+
+/* Mobile */
+@media(max-width:768px){
+  body{flex-direction:column}
+  .sidebar{width:100%;min-height:auto;position:sticky;top:0;bottom:auto;left:auto;border-right:none;border-bottom:1px solid #e8e0d4;padding:1rem 0 0}
+  .sidebar-header{padding:0 1.2rem 0.6rem}
+  .story-list{display:flex;flex-direction:row;overflow-x:auto;overflow-y:visible;padding:0 1rem 0;gap:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:none}
+  .story-list::-webkit-scrollbar{display:none}
+  .story-item{white-space:nowrap;border-left:none;padding:0.7rem 1rem;flex-shrink:0;border-bottom:3px solid transparent;border-radius:0;width:auto}
+  .story-item:hover{background:transparent}
+  .story-item.active{background:transparent;border-left-color:transparent;border-bottom-color:#c4956a}
+  .story-number{display:inline;margin-right:0.3rem;margin-bottom:0}
+  .sidebar-footer{display:none}
+  .main{margin-left:0;padding:1.5rem 1rem;min-height:calc(100vh - 140px)}
+  .card{padding:2rem 1.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Cerita-Cerita Saya</div>
+    <div class="sidebar-subtitle">My Indonesian stories</div>
+  </div>
+  <div class="story-list" id="storyList"></div>
+  <div class="sidebar-footer">More stories coming soon</div>
+</nav>
+
+<main class="main">
+  <div class="card">
+    <div class="header">
+      <h1 class="title" id="storyTitle"></h1>
+      <div class="divider"></div>
+    </div>
+    <div class="story" id="storyContent"></div>
+    <div class="toggle-bar">
+      <span class="toggle-label active" id="labelIndo">Bahasa</span>
+      <button class="toggle-switch" id="langToggle" onclick="toggleLanguage()" aria-label="Toggle language"></button>
+      <span class="toggle-label" id="labelEng">English</span>
+    </div>
+    <div class="card-footer" id="storyFooter"></div>
+  </div>
+</main>
+
+<script>
+const stories = [
+  {
+    id: "pijat",
+    menuTitle: "Tukang pijat dari Bali",
+    title: "Cerita dari tukang pijat",
+    footer: "Bali · Romania",
+    indo: [
+      "Jadi, saya tinggal di Bali tapi setiap tahun pulang ke Romania beberapa minggu. Keluarga saya di sana.",
+      "Nah, terakhir saya di Romania, saya kaget karena ada tempat \"Balinese Massage\" di dekat rumah saya.",
+      "Saya masuk, dan ternyata terapisnya cewek dari Bali beneran. Saya pijat di sana dan ngobrol sedikit sama dia.",
+      "Katanya dia ke Romania lewat agen yang kirim orang Indonesia ke negara-negara di Eropa dan bantu cari kerja. Gajinya lebih bagus di Eropa daripada di Indonesia, jadi sama-sama untung.",
+      "Yang lucu, saya pergi dari Romania untuk tinggal di sini, dan dia pergi dari Bali untuk tinggal di Romania."
+    ],
+    english: [
+      "So, I live in Bali but every year I go back to Romania for a few weeks. My family is there.",
+      "Well, last time I was in Romania, I was surprised because there was a \"Balinese Massage\" place near my house.",
+      "I went in, and sure enough the therapist was a girl from Bali for real. I got a massage there and chatted a little with her.",
+      "Apparently she went to Romania through an agency that sends Indonesians to countries in Europe and helps them find work. The salary is better in Europe than in Indonesia, so it's a win-win.",
+      "The funny thing is, I left Romania to live here, and she left Bali to live in Romania."
+    ]
+  },
+  {
+    id: "laundry",
+    menuTitle: "Baju yang hilang",
+    title: "Cerita dari tempat laundry",
+    footer: "Bali",
+    indo: [
+      "Jadi kemarin saya antar cucian ke tempat laundry dekat rumah.",
+      "Dua hari kemudian saya ambil, dan di rumah saya hitung bajunya.",
+      "Ternyata ada satu yang hilang — kaos favorit saya.",
+      "Saya langsung balik ke tempat laundry dan bilang ke orangnya, \"Maaf, kayaknya ada baju saya yang kurang.\"",
+      "Mereka cari di belakang, cek semua rak, tanya teman-temannya juga. Saya tunggu agak lama, mulai merasa nggak enak.",
+      "Terus saya pulang, dan lihat kaosnya di atas tempat tidur.",
+      "Ternyata dari awal nggak pernah saya kasih ke laundry.",
+      "Malu banget. Besoknya saya minta maaf ke mereka."
+    ],
+    english: [
+      "So yesterday I dropped off laundry at the laundry place near my house.",
+      "Two days later I picked it up, and at home I counted the clothes.",
+      "Turns out one was missing — my favorite t-shirt.",
+      "I went straight back to the laundry place and told the staff, \"Sorry, I think one of my clothes is missing.\"",
+      "They looked in the back, checked every shelf, asked their coworkers too. I waited a while, started feeling bad.",
+      "Then I went home, and saw the shirt on the bed.",
+      "Turns out I never gave it to the laundry in the first place.",
+      "So embarrassing. The next day I apologized to them."
+    ]
+  }
+];
+
+let currentStory = 0;
+let showEnglish = false;
+
+function renderMenu() {
+  const list = document.getElementById('storyList');
+  list.innerHTML = stories.map((s, i) =>
+    `<button class="story-item${i === currentStory ? ' active' : ''}" onclick="selectStory(${i})">
+      <span class="story-number">Cerita ${i + 1}</span>
+      ${s.menuTitle}
+    </button>`
+  ).join('');
+}
+
+function renderStory() {
+  const s = stories[currentStory];
+  const content = document.getElementById('storyContent');
+  const paragraphs = showEnglish ? s.english : s.indo;
+
+  document.getElementById('storyTitle').textContent = s.title;
+  document.getElementById('storyFooter').textContent = s.footer;
+
+  content.classList.add('fade');
+  setTimeout(() => {
+    content.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+    content.classList.remove('fade');
+  }, 250);
+}
+
+function selectStory(index) {
+  currentStory = index;
+  showEnglish = false;
+  updateToggleUI();
+  renderMenu();
+  renderStory();
+}
+
+function toggleLanguage() {
+  showEnglish = !showEnglish;
+  updateToggleUI();
+  renderStory();
+}
+
+function updateToggleUI() {
+  const btn = document.getElementById('langToggle');
+  const labelIndo = document.getElementById('labelIndo');
+  const labelEng = document.getElementById('labelEng');
+  if (showEnglish) {
+    btn.classList.add('on');
+    labelIndo.classList.remove('active');
+    labelEng.classList.add('active');
+  } else {
+    btn.classList.remove('on');
+    labelIndo.classList.add('active');
+    labelEng.classList.remove('active');
+  }
+}
+
+renderMenu();
+renderStory();
+</script>
+</body>
+</html>

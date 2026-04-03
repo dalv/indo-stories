@@ -60,12 +60,21 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 
 /* Word popup */
 .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem}
-.popup-card{background:#fffdf9;border-radius:14px;padding:1.8rem 2rem 1.5rem;max-width:340px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;animation:popupIn 0.2s ease}
+.popup-card{background:#fffdf9;border-radius:14px;padding:1.8rem 2rem 1.5rem;max-width:380px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;animation:popupIn 0.2s ease;max-height:80vh;overflow-y:auto}
 .popup-close{position:absolute;top:0.6rem;right:0.8rem;border:none;background:none;font-size:1.4rem;color:#b0a393;cursor:pointer;line-height:1;padding:0.2rem}
 .popup-close:hover{color:#3a2e24}
 .popup-word{font-size:1.3rem;font-weight:500;color:#c4956a;margin-bottom:0.8rem}
 .popup-translation{font-family:var(--font-dm-sans),sans-serif;font-size:0.95rem;color:#3a2e24;font-weight:500;margin-bottom:0.6rem}
 .popup-explanation{font-family:var(--font-dm-sans),sans-serif;font-size:0.85rem;color:#7a6e62;line-height:1.6}
+.popup-ask{margin-top:1rem;padding-top:0.8rem;border-top:1px solid #ede7dd}
+.popup-ask-row{display:flex;gap:0.5rem}
+.popup-ask-input{flex:1;font-family:var(--font-dm-sans),sans-serif;font-size:0.82rem;padding:0.5rem 0.7rem;border:1px solid #e8e0d4;border-radius:8px;background:#f9f5ef;color:#3a2e24;outline:none;transition:border-color 0.2s}
+.popup-ask-input:focus{border-color:#c4956a}
+.popup-ask-input::placeholder{color:#b0a393}
+.popup-ask-btn{font-family:var(--font-dm-sans),sans-serif;font-size:0.78rem;font-weight:600;padding:0.5rem 0.9rem;background:#c4956a;color:#fffdf9;border:none;border-radius:8px;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.popup-ask-btn:hover{background:#b8875e}
+.popup-ask-btn:disabled{opacity:0.5;cursor:not-allowed}
+.popup-answer{font-family:var(--font-dm-sans),sans-serif;font-size:0.82rem;color:#4a3f35;line-height:1.6;margin-top:0.6rem;padding:0.6rem 0.7rem;background:#f9f5ef;border-radius:8px}
 .popup-loading{display:flex;justify-content:center;padding:1rem 0}
 .popup-spinner{width:24px;height:24px;border:3px solid #e8e0d4;border-top-color:#c4956a;border-radius:50%;animation:spin 0.6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}

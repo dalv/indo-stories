@@ -15,6 +15,8 @@ export default function Home() {
 
   const [popupState, setPopupState] = useState<{
     word: string;
+    paragraph: string;
+    englishParagraph: string;
     translation: string;
     explanation: string;
     isLoading: boolean;
@@ -28,7 +30,7 @@ export default function Home() {
       const cleanWord = word.replace(/[.,!?"'""\-—;:()]/g, "");
       if (!cleanWord) return;
 
-      setPopupState({ word: cleanWord, translation: "", explanation: "", isLoading: true });
+      setPopupState({ word: cleanWord, paragraph: story.indo[paragraphIndex], englishParagraph: story.english[paragraphIndex], translation: "", explanation: "", isLoading: true });
 
       try {
         const res = await fetch("/api/explain", {
@@ -41,19 +43,19 @@ export default function Home() {
           }),
         });
         const data = await res.json();
-        setPopupState({
-          word: cleanWord,
+        setPopupState((prev) => prev ? {
+          ...prev,
           translation: data.translation || "",
           explanation: data.explanation || "",
           isLoading: false,
-        });
+        } : null);
       } catch {
-        setPopupState({
-          word: cleanWord,
+        setPopupState((prev) => prev ? {
+          ...prev,
           translation: "Failed to load explanation",
           explanation: "",
           isLoading: false,
-        });
+        } : null);
       }
     },
     [story]
@@ -100,6 +102,8 @@ export default function Home() {
       {popupState && (
         <WordPopup
           word={popupState.word}
+          paragraph={popupState.paragraph}
+          englishParagraph={popupState.englishParagraph}
           translation={popupState.translation}
           explanation={popupState.explanation}
           isLoading={popupState.isLoading}

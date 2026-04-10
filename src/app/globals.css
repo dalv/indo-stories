@@ -80,6 +80,33 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes popupIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
 
+/* Card flip animation */
+@keyframes cardFlip{0%{transform:perspective(800px) rotateY(0deg)}50%{transform:perspective(800px) rotateY(90deg)}100%{transform:perspective(800px) rotateY(0deg)}}
+.card-flipping{animation:cardFlip 0.6s ease}
+
+/* Review toggle button */
+.review-toggle-btn{position:absolute;bottom:1rem;right:1rem;width:36px;height:36px;border:1px solid #e8e0d4;background:#fffdf9;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:#7a6e62}
+.review-toggle-btn:hover{background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
+.review-toggle-btn.active{background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
+
+/* Vocab review flashcards */
+.vocab-review{display:flex;flex-direction:column;align-items:center;padding:1rem 0}
+.vocab-counter{font-family:var(--font-dm-sans),sans-serif;font-size:0.75rem;color:#b0a393;letter-spacing:0.06em;margin-bottom:1.2rem}
+.vocab-scene{width:100%;max-width:400px;height:200px;perspective:600px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vocab-card-inner{position:relative;width:100%;height:100%;transition:transform 0.5s ease;transform-style:preserve-3d}
+.vocab-card-inner.flipped{transform:rotateY(180deg)}
+.vocab-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid #e8e0d4;border-radius:12px;background:#fffdf9;text-align:center}
+.vocab-back{transform:rotateY(180deg);background:#faf6f0}
+.vocab-prompt{font-family:var(--font-dm-sans),sans-serif;font-size:0.7rem;color:#b0a393;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem}
+.vocab-word{font-size:1.3rem;font-weight:500;color:#3a2e24;line-height:1.4}
+.vocab-word-indo{color:#c4956a}
+.vocab-hint{font-family:var(--font-dm-sans),sans-serif;font-size:0.7rem;color:#c4b8a8;margin-top:1rem}
+.vocab-context{font-family:var(--font-dm-sans),sans-serif;font-size:0.8rem;color:#7a6e62;margin-top:0.6rem;line-height:1.5}
+.vocab-nav{display:flex;gap:1rem;margin-top:1.5rem}
+.vocab-nav-btn{font-family:var(--font-dm-sans),sans-serif;font-size:0.82rem;font-weight:500;color:#7a6e62;background:none;border:1px solid #e8e0d4;border-radius:8px;padding:0.5rem 1.2rem;cursor:pointer;transition:all 0.2s}
+.vocab-nav-btn:hover:not(:disabled){background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
+.vocab-nav-btn:disabled{opacity:0.35;cursor:not-allowed}
+
 /* Fade transition */
 .story{transition:opacity 0.25s ease}
 .story.fade{opacity:0}

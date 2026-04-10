@@ -1,3 +1,9 @@
+export interface VocabCard {
+  indo: string;
+  english: string;
+  context?: string;
+}
+
 export interface Story {
   id: string;
   menuTitle: string;
@@ -7,6 +13,7 @@ export interface Story {
   footer: string;
   indo: string[];
   english: string[];
+  vocabCards: VocabCard[];
 }
 
 export const stories: Story[] = [
@@ -30,6 +37,18 @@ export const stories: Story[] = [
       "I went in, and sure enough the therapist was a girl from Bali for real. I got a massage there and chatted a little with her.",
       "Apparently she went to Romania through an agency that sends Indonesians to countries in Europe and helps them find work. The salary is better in Europe than in Indonesia, so it's a win-win.",
       "The funny thing is, I left Romania to live here, and she left Bali to live in Romania.",
+    ],
+    vocabCards: [
+      { indo: "ternyata", english: "turns out / it turns out", context: "Expresses surprise at a discovery" },
+      { indo: "beneran", english: "for real / genuinely", context: "Informal way to emphasize something is true" },
+      { indo: "ngobrol", english: "to chat", context: "Casual/informal word for having a conversation" },
+      { indo: "lewat", english: "through / via", context: "Used to describe going through an intermediary" },
+      { indo: "sama-sama untung", english: "win-win / mutually beneficial" },
+      { indo: "gajinya", english: "the salary", context: "-nya suffix makes it 'the salary' (specific)" },
+      { indo: "kaget", english: "surprised / shocked" },
+      { indo: "pulang", english: "to go home / return home", context: "Specifically means returning to one's home" },
+      { indo: "yang lucu", english: "the funny thing", context: "'yang' turns 'lucu' (funny) into a noun phrase" },
+      { indo: "dekat", english: "near / close to" },
     ],
   },
   {
@@ -59,6 +78,17 @@ export const stories: Story[] = [
       "Turns out I never gave it to the laundry in the first place.",
       "So embarrassing. The next day I apologized to them.",
     ],
+    vocabCards: [
+      { indo: "kemudian", english: "later / afterwards", context: "More formal than 'terus' for sequencing events" },
+      { indo: "kayaknya", english: "it seems / I think", context: "Softens a statement, makes it less direct" },
+      { indo: "kurang", english: "missing / lacking / less", context: "Here means 'missing' — one item short" },
+      { indo: "langsung", english: "immediately / directly", context: "Emphasizes doing something right away" },
+      { indo: "malu banget", english: "so embarrassing", context: "'banget' intensifies — 'very/so much'" },
+      { indo: "nggak enak", english: "feeling bad / uncomfortable", context: "Literally 'not nice' — used for guilt or awkwardness" },
+      { indo: "besoknya", english: "the next day", context: "-nya makes it 'the next day' (specific)" },
+      { indo: "balik", english: "to go back / return", context: "Informal version of 'kembali'" },
+      { indo: "ternyata", english: "turns out / it turns out", context: "Reveals something unexpected" },
+    ],
   },
   {
     id: "pisang",
@@ -84,6 +114,16 @@ export const stories: Story[] = [
       "Oh well, I went back to the motorbike and rode another two minutes to the next stall.",
       "Once again, \"Got any bananas?\" This time I was lucky! \"Only two left,\" they said.",
       "So I grabbed the last two bananas and headed home to make breakfast.",
+    ],
+    vocabCards: [
+      { indo: "habis", english: "all gone / finished / used up" },
+      { indo: "nongol", english: "to pop up / appear", context: "Very casual/slang — suddenly showing up" },
+      { indo: "beruntung", english: "lucky / fortunate" },
+      { indo: "tinggal", english: "only ... left / remaining", context: "Here means 'only X left' — different from 'to live'" },
+      { indo: "warung", english: "small shop / stall", context: "A small local shop, very common in Indonesia" },
+      { indo: "lagi-lagi", english: "once again / yet again" },
+      { indo: "terus", english: "then / and then", context: "Casual connector between actions in a sequence" },
+      { indo: "terakhir", english: "last / final", context: "The last remaining ones" },
     ],
   },
 ];

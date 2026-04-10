@@ -102,6 +102,20 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 .vocab-nav-btn:hover:not(:disabled){background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
 .vocab-nav-btn:disabled{opacity:0.35;cursor:not-allowed}
 
+/* Login page */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f4f1ec;padding:1rem}
+.login-card{background:#fffdf9;max-width:380px;width:100%;padding:2.5rem 2rem;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06);position:relative}
+.login-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c4956a,#d4a97a,#e8c9a0);border-radius:16px 16px 0 0}
+.login-title{font-size:1.4rem;font-weight:500;color:#3a2e24;text-align:center;margin-bottom:0.3rem}
+.login-subtitle{font-family:var(--font-dm-sans),sans-serif;font-size:0.8rem;color:#b0a393;text-align:center;margin-bottom:1.8rem}
+.login-input{display:block;width:100%;font-family:var(--font-dm-sans),sans-serif;font-size:0.88rem;padding:0.65rem 0.8rem;border:1px solid #e8e0d4;border-radius:8px;background:#f9f5ef;color:#3a2e24;outline:none;margin-bottom:0.8rem;transition:border-color 0.2s}
+.login-input:focus{border-color:#c4956a}
+.login-input::placeholder{color:#b0a393}
+.login-btn{display:block;width:100%;font-family:var(--font-dm-sans),sans-serif;font-size:0.88rem;font-weight:600;padding:0.7rem;background:#c4956a;color:#fffdf9;border:none;border-radius:8px;cursor:pointer;transition:background 0.2s;margin-top:0.4rem}
+.login-btn:hover{background:#b8875e}
+.login-btn:disabled{opacity:0.6;cursor:not-allowed}
+.login-error{font-family:var(--font-dm-sans),sans-serif;font-size:0.78rem;color:#c0392b;margin-bottom:0.5rem;text-align:center}
+
 /* Fade transition */
 .story{transition:opacity 0.25s ease}
 .story.fade{opacity:0}

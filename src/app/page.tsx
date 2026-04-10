@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { stories } from "@/data/stories";
 import Sidebar from "@/components/Sidebar";
 import StoryText from "@/components/StoryText";
@@ -15,8 +15,6 @@ export default function Home() {
   const [showEnglish, setShowEnglish] = useState(false);
 
   const [showReview, setShowReview] = useState(false);
-  const [isFlipping, setIsFlipping] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   const [popupState, setPopupState] = useState<{
     word: string;
@@ -29,17 +27,6 @@ export default function Home() {
 
   const story = stories[currentIndex];
   const audio = useAudioPlayer(story.id);
-
-  const toggleReview = useCallback(() => {
-    if (isFlipping) return;
-    if (!showReview) audio.stop();
-    setIsFlipping(true);
-    setTimeout(() => setShowReview(prev => !prev), 300);
-    setTimeout(() => {
-      setIsFlipping(false);
-      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 600);
-  }, [isFlipping, showReview, audio]);
 
   const handleWordClick = useCallback(
     async (word: string, paragraphIndex: number) => {
@@ -104,7 +91,7 @@ export default function Home() {
         />
       </Sidebar>
       <main className="main">
-        <div ref={cardRef} className={`card ${isFlipping ? "card-flipping" : ""}`}>
+        <div className="card">
           <div className="header">
             <h1 className="title">
               {showReview ? "Review Words" : showEnglish ? story.titleEn : story.title}
@@ -124,12 +111,13 @@ export default function Home() {
             </>
           )}
           <button
-            className={`review-toggle-btn ${showReview ? "active" : ""}`}
-            onClick={toggleReview}
-            aria-label={showReview ? "Back to story" : "Review vocabulary"}
-            title={showReview ? "Back to story" : "Review vocabulary"}
+            className="review-toggle-btn"
+            onClick={() => {
+              if (!showReview) audio.stop();
+              setShowReview(!showReview);
+            }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            {showReview ? "Back to story" : "Review"}
           </button>
         </div>
       </main>

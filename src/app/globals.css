@@ -80,14 +80,9 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes popupIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
 
-/* Card flip animation */
-@keyframes cardFlip{0%{transform:perspective(800px) rotateY(0deg)}50%{transform:perspective(800px) rotateY(90deg)}100%{transform:perspective(800px) rotateY(0deg)}}
-.card-flipping{animation:cardFlip 0.6s ease}
-
 /* Review toggle button */
-.review-toggle-btn{position:absolute;bottom:1rem;right:1rem;width:36px;height:36px;border:1px solid #e8e0d4;background:#fffdf9;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:#7a6e62}
+.review-toggle-btn{position:absolute;bottom:1rem;right:1rem;border:1px solid #e8e0d4;background:#fffdf9;border-radius:8px;cursor:pointer;padding:0.35rem 0.8rem;font-family:var(--font-dm-sans),sans-serif;font-size:0.72rem;font-weight:500;color:#7a6e62;letter-spacing:0.03em;transition:all 0.2s}
 .review-toggle-btn:hover{background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
-.review-toggle-btn.active{background:#f9f5ef;border-color:#c4956a;color:#3a2e24}
 
 /* Vocab review flashcards */
 .vocab-review{display:flex;flex-direction:column;align-items:center;padding:1rem 0}

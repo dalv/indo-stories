@@ -1,598 +1,598 @@
 {
-  "duration": 42.865,
+  "duration": 47.044,
   "words": [
     {
       "word": "Jadi,",
       "start": 0,
-      "end": 0.755,
+      "end": 0.824,
       "paragraphIndex": 0
     },
     {
       "word": "saya",
-      "start": 0.871,
-      "end": 1.161,
+      "start": 0.975,
+      "end": 1.242,
       "paragraphIndex": 0
     },
     {
       "word": "tinggal",
-      "start": 1.207,
-      "end": 1.498,
+      "start": 1.289,
+      "end": 1.544,
       "paragraphIndex": 0
     },
     {
       "word": "di",
-      "start": 1.533,
-      "end": 1.591,
+      "start": 1.579,
+      "end": 1.637,
       "paragraphIndex": 0
     },
     {
       "word": "Bali",
-      "start": 1.649,
-      "end": 1.985,
+      "start": 1.695,
+      "end": 2.113,
       "paragraphIndex": 0
     },
     {
       "word": "tapi",
-      "start": 2.368,
-      "end": 2.717,
+      "start": 2.194,
+      "end": 2.496,
       "paragraphIndex": 0
     },
     {
       "word": "setiap",
-      "start": 2.763,
-      "end": 3.03,
+      "start": 2.543,
+      "end": 2.902,
       "paragraphIndex": 0
     },
     {
       "word": "tahun",
-      "start": 3.1,
-      "end": 3.309,
+      "start": 2.961,
+      "end": 3.355,
       "paragraphIndex": 0
     },
     {
       "word": "pulang",
-      "start": 3.367,
-      "end": 3.669,
+      "start": 3.425,
+      "end": 3.785,
       "paragraphIndex": 0
     },
     {
       "word": "ke",
-      "start": 3.715,
-      "end": 3.762,
+      "start": 3.831,
+      "end": 3.889,
       "paragraphIndex": 0
     },
     {
       "word": "Romania",
-      "start": 3.785,
-      "end": 4.272,
+      "start": 3.924,
+      "end": 4.458,
       "paragraphIndex": 0
     },
     {
       "word": "beberapa",
-      "start": 4.342,
-      "end": 4.737,
+      "start": 4.551,
+      "end": 5.05,
       "paragraphIndex": 0
     },
     {
       "word": "minggu.",
-      "start": 4.783,
-      "end": 5.352,
+      "start": 5.097,
+      "end": 5.724,
       "paragraphIndex": 0
     },
     {
       "word": "Keluarga",
-      "start": 5.631,
-      "end": 6.037,
+      "start": 5.956,
+      "end": 6.385,
       "paragraphIndex": 0
     },
     {
       "word": "saya",
-      "start": 6.084,
-      "end": 6.374,
+      "start": 6.444,
+      "end": 6.676,
       "paragraphIndex": 0
     },
     {
       "word": "di",
-      "start": 6.42,
-      "end": 6.49,
+      "start": 6.711,
+      "end": 6.78,
       "paragraphIndex": 0
     },
     {
       "word": "sana.",
-      "start": 6.536,
-      "end": 7.117,
+      "start": 6.838,
+      "end": 7.419,
       "paragraphIndex": 0
     },
     {
       "word": "Nah,",
-      "start": 7.558,
-      "end": 8.057,
+      "start": 8.022,
+      "end": 8.429,
       "paragraphIndex": 1
     },
     {
       "word": "terakhir",
-      "start": 8.231,
-      "end": 8.638,
-      "paragraphIndex": 1
-    },
-    {
-      "word": "saya",
-      "start": 8.696,
+      "start": 8.475,
       "end": 8.94,
       "paragraphIndex": 1
     },
     {
+      "word": "saya",
+      "start": 9.009,
+      "end": 9.195,
+      "paragraphIndex": 1
+    },
+    {
       "word": "di",
-      "start": 8.998,
-      "end": 9.044,
+      "start": 9.242,
+      "end": 9.288,
       "paragraphIndex": 1
     },
     {
       "word": "Romania,",
-      "start": 9.091,
-      "end": 9.857,
+      "start": 9.346,
+      "end": 10.252,
       "paragraphIndex": 1
     },
     {
       "word": "saya",
-      "start": 10.066,
-      "end": 10.298,
+      "start": 10.495,
+      "end": 10.762,
       "paragraphIndex": 1
     },
     {
       "word": "kaget",
-      "start": 10.344,
-      "end": 10.681,
+      "start": 10.82,
+      "end": 11.238,
       "paragraphIndex": 1
     },
     {
       "word": "karena",
-      "start": 10.728,
-      "end": 11.018,
+      "start": 11.308,
+      "end": 11.575,
       "paragraphIndex": 1
     },
     {
       "word": "ada",
-      "start": 11.064,
-      "end": 11.227,
+      "start": 11.622,
+      "end": 11.796,
       "paragraphIndex": 1
     },
     {
       "word": "tempat",
-      "start": 11.285,
-      "end": 11.691,
+      "start": 11.854,
+      "end": 12.318,
       "paragraphIndex": 1
     },
     {
       "word": "\"Balinese",
-      "start": 11.714,
-      "end": 12.33,
+      "start": 12.399,
+      "end": 13.038,
       "paragraphIndex": 1
     },
     {
       "word": "Massage\"",
-      "start": 12.365,
-      "end": 13.108,
+      "start": 13.073,
+      "end": 13.735,
       "paragraphIndex": 1
     },
     {
       "word": "di",
-      "start": 13.259,
-      "end": 13.34,
+      "start": 13.816,
+      "end": 13.92,
       "paragraphIndex": 1
     },
     {
       "word": "dekat",
-      "start": 13.398,
-      "end": 13.63,
+      "start": 13.978,
+      "end": 14.245,
       "paragraphIndex": 1
     },
     {
       "word": "rumah",
-      "start": 13.677,
-      "end": 13.897,
+      "start": 14.292,
+      "end": 14.501,
       "paragraphIndex": 1
     },
     {
       "word": "saya.",
-      "start": 13.944,
-      "end": 14.489,
+      "start": 14.536,
+      "end": 15.093,
       "paragraphIndex": 1
     },
     {
       "word": "Saya",
-      "start": 15.093,
-      "end": 15.395,
+      "start": 15.476,
+      "end": 15.778,
       "paragraphIndex": 2
     },
     {
       "word": "masuk,",
-      "start": 15.453,
-      "end": 16.033,
+      "start": 15.836,
+      "end": 16.451,
       "paragraphIndex": 2
     },
     {
       "word": "dan",
-      "start": 16.208,
-      "end": 16.358,
+      "start": 16.602,
+      "end": 16.765,
       "paragraphIndex": 2
     },
     {
       "word": "ternyata",
-      "start": 16.405,
-      "end": 16.858,
+      "start": 16.834,
+      "end": 17.554,
       "paragraphIndex": 2
     },
     {
       "word": "terapisnya",
-      "start": 16.939,
-      "end": 17.52,
+      "start": 17.984,
+      "end": 18.599,
       "paragraphIndex": 2
     },
     {
       "word": "cewek",
-      "start": 17.555,
-      "end": 17.764,
+      "start": 18.692,
+      "end": 19.087,
       "paragraphIndex": 2
     },
     {
       "word": "dari",
-      "start": 17.798,
-      "end": 17.973,
+      "start": 19.133,
+      "end": 19.33,
       "paragraphIndex": 2
     },
     {
       "word": "Bali",
-      "start": 18.031,
-      "end": 18.251,
+      "start": 19.377,
+      "end": 19.586,
       "paragraphIndex": 2
     },
     {
       "word": "beneran.",
-      "start": 18.309,
-      "end": 18.901,
+      "start": 19.644,
+      "end": 20.34,
       "paragraphIndex": 2
     },
     {
       "word": "Saya",
-      "start": 19.598,
-      "end": 19.853,
+      "start": 21.165,
+      "end": 21.478,
       "paragraphIndex": 2
     },
     {
       "word": "pijat",
-      "start": 19.9,
-      "end": 20.237,
+      "start": 21.525,
+      "end": 21.768,
       "paragraphIndex": 2
     },
     {
       "word": "di",
-      "start": 20.295,
-      "end": 20.353,
+      "start": 21.815,
+      "end": 21.873,
       "paragraphIndex": 2
     },
     {
       "word": "sana",
-      "start": 20.387,
-      "end": 20.643,
+      "start": 21.908,
+      "end": 22.43,
       "paragraphIndex": 2
     },
     {
       "word": "dan",
-      "start": 20.713,
-      "end": 20.84,
+      "start": 22.72,
+      "end": 22.895,
       "paragraphIndex": 2
     },
     {
       "word": "ngobrol",
-      "start": 20.875,
-      "end": 21.212,
+      "start": 22.918,
+      "end": 23.289,
       "paragraphIndex": 2
     },
     {
       "word": "sedikit",
-      "start": 21.258,
-      "end": 21.653,
+      "start": 23.336,
+      "end": 23.638,
       "paragraphIndex": 2
     },
     {
       "word": "sama",
-      "start": 21.688,
-      "end": 21.908,
+      "start": 23.672,
+      "end": 23.858,
       "paragraphIndex": 2
     },
     {
       "word": "dia.",
-      "start": 21.943,
-      "end": 22.454,
+      "start": 23.905,
+      "end": 24.427,
       "paragraphIndex": 2
     },
     {
       "word": "Katanya",
-      "start": 22.965,
-      "end": 23.476,
+      "start": 25.031,
+      "end": 25.46,
       "paragraphIndex": 3
     },
     {
       "word": "dia",
-      "start": 23.522,
-      "end": 23.696,
+      "start": 25.518,
+      "end": 25.669,
       "paragraphIndex": 3
     },
     {
       "word": "ke",
-      "start": 23.754,
-      "end": 23.812,
+      "start": 25.739,
+      "end": 25.785,
       "paragraphIndex": 3
     },
     {
       "word": "Romania",
-      "start": 23.847,
-      "end": 24.555,
+      "start": 25.809,
+      "end": 26.517,
       "paragraphIndex": 3
     },
     {
       "word": "lewat",
-      "start": 24.672,
-      "end": 24.939,
+      "start": 26.854,
+      "end": 27.144,
       "paragraphIndex": 3
     },
     {
       "word": "agen",
-      "start": 25.02,
-      "end": 25.31,
+      "start": 27.202,
+      "end": 27.446,
       "paragraphIndex": 3
     },
     {
       "word": "yang",
-      "start": 25.368,
-      "end": 25.473,
+      "start": 27.492,
+      "end": 27.608,
       "paragraphIndex": 3
     },
     {
       "word": "kirim",
-      "start": 25.519,
-      "end": 25.798,
-      "paragraphIndex": 3
-    },
-    {
-      "word": "orang",
-      "start": 25.879,
-      "end": 26.065,
-      "paragraphIndex": 3
-    },
-    {
-      "word": "Indonesia",
-      "start": 26.1,
-      "end": 26.785,
-      "paragraphIndex": 3
-    },
-    {
-      "word": "ke",
-      "start": 27.028,
-      "end": 27.133,
-      "paragraphIndex": 3
-    },
-    {
-      "word": "negara-negara",
-      "start": 27.191,
-      "end": 27.806,
-      "paragraphIndex": 3
-    },
-    {
-      "word": "di",
-      "start": 27.864,
+      "start": 27.643,
       "end": 27.922,
       "paragraphIndex": 3
     },
     {
+      "word": "orang",
+      "start": 27.991,
+      "end": 28.166,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "Indonesia",
+      "start": 28.212,
+      "end": 28.932,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "ke",
+      "start": 29.373,
+      "end": 29.477,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "negara-negara",
+      "start": 29.547,
+      "end": 30.244,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "di",
+      "start": 30.29,
+      "end": 30.348,
+      "paragraphIndex": 3
+    },
+    {
       "word": "Eropa",
-      "start": 27.969,
-      "end": 28.48,
+      "start": 30.406,
+      "end": 30.905,
       "paragraphIndex": 3
     },
     {
       "word": "dan",
-      "start": 28.99,
-      "end": 29.176,
+      "start": 31.242,
+      "end": 31.44,
       "paragraphIndex": 3
     },
     {
       "word": "bantu",
-      "start": 29.234,
-      "end": 29.478,
+      "start": 31.498,
+      "end": 31.846,
       "paragraphIndex": 3
     },
     {
       "word": "cari",
-      "start": 29.524,
-      "end": 29.699,
+      "start": 31.904,
+      "end": 32.078,
       "paragraphIndex": 3
     },
     {
       "word": "kerja.",
-      "start": 29.745,
-      "end": 30.36,
+      "start": 32.125,
+      "end": 32.763,
       "paragraphIndex": 3
     },
     {
       "word": "Gajinya",
-      "start": 31.057,
-      "end": 31.429,
+      "start": 33.367,
+      "end": 33.785,
       "paragraphIndex": 3
     },
     {
       "word": "lebih",
-      "start": 31.475,
-      "end": 31.707,
+      "start": 33.843,
+      "end": 34.017,
       "paragraphIndex": 3
     },
     {
       "word": "bagus",
-      "start": 31.742,
-      "end": 32.021,
+      "start": 34.04,
+      "end": 34.33,
       "paragraphIndex": 3
     },
     {
       "word": "di",
-      "start": 32.079,
-      "end": 32.125,
+      "start": 34.377,
+      "end": 34.435,
       "paragraphIndex": 3
     },
     {
       "word": "Eropa",
-      "start": 32.172,
-      "end": 32.636,
+      "start": 34.493,
+      "end": 34.83,
       "paragraphIndex": 3
     },
     {
       "word": "daripada",
-      "start": 32.706,
-      "end": 33.112,
+      "start": 34.888,
+      "end": 35.236,
       "paragraphIndex": 3
     },
     {
       "word": "di",
-      "start": 33.17,
-      "end": 33.228,
+      "start": 35.271,
+      "end": 35.329,
       "paragraphIndex": 3
     },
     {
       "word": "Indonesia,",
-      "start": 33.263,
-      "end": 34.169,
+      "start": 35.364,
+      "end": 36.258,
       "paragraphIndex": 3
     },
     {
       "word": "jadi",
-      "start": 34.68,
-      "end": 34.865,
+      "start": 36.78,
+      "end": 36.989,
       "paragraphIndex": 3
     },
     {
       "word": "sama-sama",
-      "start": 34.912,
-      "end": 35.353,
+      "start": 37.048,
+      "end": 37.524,
       "paragraphIndex": 3
     },
     {
       "word": "untung.",
-      "start": 35.434,
-      "end": 35.98,
+      "start": 37.593,
+      "end": 38.174,
       "paragraphIndex": 3
     },
     {
       "word": "Yang",
-      "start": 36.154,
-      "end": 36.328,
+      "start": 38.685,
+      "end": 38.893,
       "paragraphIndex": 4
     },
     {
       "word": "lucu,",
-      "start": 36.351,
-      "end": 36.885,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "saya",
-      "start": 37.036,
-      "end": 37.269,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "pergi",
-      "start": 37.338,
-      "end": 37.594,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "dari",
-      "start": 37.652,
-      "end": 37.826,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "Romania",
-      "start": 37.884,
-      "end": 38.406,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "untuk",
-      "start": 38.488,
-      "end": 38.731,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "tinggal",
-      "start": 38.766,
-      "end": 39.056,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "di",
-      "start": 39.091,
-      "end": 39.138,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "sini,",
-      "start": 39.184,
+      "start": 38.952,
       "end": 39.683,
       "paragraphIndex": 4
     },
     {
-      "word": "dan",
-      "start": 39.892,
-      "end": 40.032,
-      "paragraphIndex": 4
-    },
-    {
-      "word": "dia",
-      "start": 40.078,
-      "end": 40.229,
+      "word": "saya",
+      "start": 39.927,
+      "end": 40.194,
       "paragraphIndex": 4
     },
     {
       "word": "pergi",
-      "start": 40.276,
-      "end": 40.508,
+      "start": 40.252,
+      "end": 40.507,
       "paragraphIndex": 4
     },
     {
       "word": "dari",
-      "start": 40.566,
-      "end": 40.728,
+      "start": 40.565,
+      "end": 40.751,
       "paragraphIndex": 4
     },
     {
-      "word": "Bali",
-      "start": 40.775,
-      "end": 41.042,
+      "word": "Romania",
+      "start": 40.809,
+      "end": 41.413,
       "paragraphIndex": 4
     },
     {
       "word": "untuk",
-      "start": 41.123,
-      "end": 41.367,
+      "start": 41.494,
+      "end": 41.796,
       "paragraphIndex": 4
     },
     {
       "word": "tinggal",
-      "start": 41.425,
-      "end": 41.773,
+      "start": 41.819,
+      "end": 42.191,
       "paragraphIndex": 4
     },
     {
       "word": "di",
-      "start": 41.843,
-      "end": 41.901,
+      "start": 42.249,
+      "end": 42.318,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "sini,",
+      "start": 42.376,
+      "end": 42.969,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "dan",
+      "start": 43.352,
+      "end": 43.549,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "dia",
+      "start": 43.607,
+      "end": 43.851,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "pergi",
+      "start": 43.932,
+      "end": 44.246,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "dari",
+      "start": 44.292,
+      "end": 44.466,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "Bali",
+      "start": 44.513,
+      "end": 44.919,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "untuk",
+      "start": 45.07,
+      "end": 45.5,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "tinggal",
+      "start": 45.534,
+      "end": 45.918,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "di",
+      "start": 45.987,
+      "end": 46.034,
       "paragraphIndex": 4
     },
     {
       "word": "Romania.",
-      "start": 41.959,
-      "end": 42.865,
+      "start": 46.092,
+      "end": 47.044,
       "paragraphIndex": 4
     }
   ]

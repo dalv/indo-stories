@@ -19,9 +19,7 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-// Pick a good multilingual voice
-// You can change this to any voice_id from your ElevenLabs account
-const VOICE_ID = "3rL9ZxRgBgIkh4tcbrEH"; // Deden Cahya - Warm, Calm and Clear
+const VOICE_ID = "Y5oW6g8hng3zAbclT1hH"; // Shea Momogi - Calm, Soothing and Warm
 const MODEL_ID = "eleven_multilingual_v2";
 
 interface Story {
@@ -29,21 +27,9 @@ interface Story {
   indo: string[];
 }
 
-// Import stories data
-async function loadStories(): Promise<Story[]> {
-  // Read the stories file and extract data
-  const storiesPath = join(process.cwd(), "src", "data", "stories.ts");
-  const content = readFileSync(storiesPath, "utf-8");
-
-  // Simple extraction: eval the array (we trust our own data file)
-  // Strip TypeScript types and export
-  const cleaned = content
-    .replace(/export interface Story \{[\s\S]*?\}/, "")
-    .replace(/export const stories: Story\[\] =/, "const stories =")
-    .replace(/as const/, "");
-
-  const fn = new Function(cleaned + "\nreturn stories;");
-  return fn();
+function loadStories(): Story[] {
+  const dataPath = join(process.cwd(), "scripts", "stories-data.json");
+  return JSON.parse(readFileSync(dataPath, "utf-8"));
 }
 
 interface AlignmentWord {
@@ -116,12 +102,10 @@ async function generateForStory(story: Story, force: boolean) {
   let wordEnd = -1;
   let paragraphIndex = 0;
 
-  // Track paragraph boundaries by counting newlines
   for (let i = 0; i < chars.length; i++) {
     const ch = chars[i];
 
     if (ch === "\n") {
-      // Flush current word if any
       if (currentWord) {
         words.push({
           word: currentWord,
@@ -137,7 +121,6 @@ async function generateForStory(story: Story, force: boolean) {
     }
 
     if (/\s/.test(ch)) {
-      // Whitespace — flush current word
       if (currentWord) {
         words.push({
           word: currentWord,
@@ -149,7 +132,6 @@ async function generateForStory(story: Story, force: boolean) {
         wordStart = -1;
       }
     } else {
-      // Non-whitespace — accumulate
       if (!currentWord) {
         wordStart = startTimes[i];
       }
@@ -158,7 +140,6 @@ async function generateForStory(story: Story, force: boolean) {
     }
   }
 
-  // Flush last word
   if (currentWord) {
     words.push({
       word: currentWord,
@@ -168,7 +149,6 @@ async function generateForStory(story: Story, force: boolean) {
     });
   }
 
-  // Calculate total duration from the last end time
   const duration = endTimes.length > 0 ? endTimes[endTimes.length - 1] : 0;
 
   const alignmentOut = { duration, words };
@@ -179,7 +159,7 @@ async function generateForStory(story: Story, force: boolean) {
 async function main() {
   const force = process.argv.includes("--force");
   console.log("Loading stories...");
-  const stories = await loadStories();
+  const stories = loadStories();
   console.log(`Found ${stories.length} stories\n`);
 
   for (const story of stories) {

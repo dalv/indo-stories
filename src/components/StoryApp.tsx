@@ -79,8 +79,6 @@ export default function StoryApp({ stories }: StoryAppProps) {
     setShowEnglish((prev) => !prev);
   };
 
-  const paragraphs = showEnglish ? story.english : story.indo;
-
   return (
     <>
       <Sidebar
@@ -94,36 +92,85 @@ export default function StoryApp({ stories }: StoryAppProps) {
           onToggle={handleToggleLanguage}
         />
       </Sidebar>
-      <main className="main">
-        <div className="card">
-          <div className="header">
-            <h1 className="title">
-              {showReview ? "Review Words" : showEnglish ? story.titleEn : story.title}
-            </h1>
-            <div className="divider" />
-          </div>
-          {showReview ? (
-            <VocabReview cards={story.vocabCards} />
-          ) : (
-            <>
+      <main className={`main ${showEnglish && !showReview ? "main-dual" : ""}`}>
+        {showEnglish && !showReview ? (
+          <div className="dual-view">
+            <div className="card">
+              <div className="header">
+                <h1 className="title">{story.title}</h1>
+                <div className="divider" />
+              </div>
               <StoryText
-                paragraphs={paragraphs}
-                spokenWordIndex={showEnglish ? -1 : audio.currentWordIndex}
-                onWordClick={showEnglish ? undefined : handleWordClick}
+                paragraphs={story.indo}
+                spokenWordIndex={audio.currentWordIndex}
+                onWordClick={handleWordClick}
               />
               <div className="card-footer">{story.footer}</div>
-            </>
-          )}
-          <button
-            className="review-toggle-btn"
-            onClick={() => {
-              if (!showReview) audio.stop();
-              setShowReview(!showReview);
-            }}
-          >
-            {showReview ? "Back to story" : "Review"}
-          </button>
-        </div>
+              <button
+                className="review-toggle-btn"
+                onClick={() => {
+                  audio.stop();
+                  setShowReview(true);
+                }}
+              >
+                Review
+              </button>
+            </div>
+            <div className="card card-english">
+              <div className="header">
+                <h1 className="title">{story.titleEn}</h1>
+                <div className="divider" />
+              </div>
+              <StoryText
+                paragraphs={story.english}
+                spokenWordIndex={-1}
+              />
+              <div className="card-footer">{story.footer}</div>
+            </div>
+            {/* Mobile-only: single card with English */}
+            <div className="card mobile-english-card">
+              <div className="header">
+                <h1 className="title">{story.titleEn}</h1>
+                <div className="divider" />
+              </div>
+              <StoryText
+                paragraphs={story.english}
+                spokenWordIndex={-1}
+              />
+              <div className="card-footer">{story.footer}</div>
+            </div>
+          </div>
+        ) : (
+          <div className="card">
+            <div className="header">
+              <h1 className="title">
+                {showReview ? "Review Words" : story.title}
+              </h1>
+              <div className="divider" />
+            </div>
+            {showReview ? (
+              <VocabReview cards={story.vocabCards} />
+            ) : (
+              <>
+                <StoryText
+                  paragraphs={story.indo}
+                  spokenWordIndex={audio.currentWordIndex}
+                  onWordClick={handleWordClick}
+                />
+                <div className="card-footer">{story.footer}</div>
+              </>
+            )}
+            <button
+              className="review-toggle-btn"
+              onClick={() => {
+                if (!showReview) audio.stop();
+                setShowReview(!showReview);
+              }}
+            >
+              {showReview ? "Back to story" : "Review"}
+            </button>
+          </div>
+        )}
       </main>
       {popupState && (
         <WordPopup
@@ -137,7 +184,7 @@ export default function StoryApp({ stories }: StoryAppProps) {
         />
       )}
       <AudioPlayer
-        isVisible={!showEnglish && !showReview}
+        isVisible={!showReview}
         isPlaying={audio.isPlaying}
         currentTime={audio.currentTime}
         duration={audio.duration}

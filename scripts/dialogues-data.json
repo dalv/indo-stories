@@ -22,7 +22,7 @@
     ]
   },
   {
-    "id": "dialog-1",
+    "id": "dialog-2",
     "indo": [
       "Kamu kerja apa?",
       "Aku kerja pakai komputer. Aku bikin aplikasi.",
@@ -45,7 +45,7 @@
     ]
   },
   {
-    "id": "dialog-2",
+    "id": "dialog-3",
     "indo": [
       "Oh iya, kamu sudah makan belum?",
       "Belum. Aku lapar banget sebenarnya.",
@@ -78,7 +78,7 @@
     ]
   },
   {
-    "id": "dialog-3",
+    "id": "dialog-4",
     "indo": [
       "Kamu ke sini naik apa?",
       "Aku naik motor.",
@@ -102,7 +102,7 @@
     ]
   },
   {
-    "id": "dialog-4",
+    "id": "dialog-5",
     "indo": [
       "Ngomong-ngomong soal hujan, musim hujan sekarang ya?",
       "Iya, sering hujan sore. Kadang-kadang hujan besar banget.",
@@ -124,7 +124,7 @@
     ]
   },
   {
-    "id": "dialog-5",
+    "id": "dialog-6",
     "indo": [
       "Oh iya, bahasa Indonesiamu sudah bagus ya.",
       "Ah, belum bagus. Masih belajar. Masih banyak yang nggak ngerti.",
@@ -149,7 +149,7 @@
     ]
   },
   {
-    "id": "dialog-6",
+    "id": "dialog-7",
     "indo": [
       "Eh, kamu tahu toko bagus untuk beli baju di dekat sini?",
       "Ada di pasar. Banyak pilihan dan lebih murah.",
@@ -173,7 +173,7 @@
     ]
   },
   {
-    "id": "dialog-7",
+    "id": "dialog-8",
     "indo": [
       "Kamu punya banyak teman di Bali?",
       "Lumayan. Ada teman dari acroyoga. Ada teman dari warung kopi juga. Macam-macam.",
@@ -198,7 +198,7 @@
     ]
   },
   {
-    "id": "dialog-8",
+    "id": "dialog-9",
     "indo": [
       "Eh, kamu kelihatan capek hari ini. Nggak apa-apa?",
       "Iya, agak capek. Kemarin latihan terlalu keras. Badan aku pegal semua.",
@@ -225,7 +225,7 @@
     ]
   },
   {
-    "id": "dialog-9",
+    "id": "dialog-10",
     "indo": [
       "Ngomong-ngomong, gimana villa kamu? Nyaman?",
       "Lumayan nyaman. Tapi ada masalah sedikit.",
@@ -254,7 +254,7 @@
     ]
   },
   {
-    "id": "dialog-10",
+    "id": "dialog-11",
     "indo": [
       "Kamu sudah ke mana aja di Indonesia? Selain Bali?",
       "Aku sudah pernah ke Lombok dan ke Yogyakarta.",
@@ -284,7 +284,7 @@
     ]
   },
   {
-    "id": "dialog-11",
+    "id": "dialog-12",
     "indo": [
       "Aku mau tanya, kamu suka apa tentang hidup di Bali?",
       "Banyak hal yang aku suka. Cuacanya bagus hampir setiap hari.",
@@ -307,7 +307,7 @@
     ]
   },
   {
-    "id": "dialog-12",
+    "id": "dialog-13",
     "indo": [
       "Eh, aku harus ke toko dulu sebentar. Mau ikut?",
       "Mau beli apa?",
@@ -335,7 +335,7 @@
     ]
   },
   {
-    "id": "dialog-13",
+    "id": "dialog-14",
     "indo": [
       "Nanti malam kamu ada acara?",
       "Belum ada rencana. Kenapa?",
@@ -356,7 +356,7 @@
     ]
   },
   {
-    "id": "dialog-14",
+    "id": "dialog-15",
     "indo": [
       "Hei, kamu datang! Ayo masuk.",
       "Makasih. Ini aku bawa bir.",
@@ -391,7 +391,7 @@
     ]
   },
   {
-    "id": "dialog-15",
+    "id": "dialog-16",
     "indo": [
       "*(keesokan harinya)*",
       "Selamat pagi! Sudah bangun?",
@@ -418,7 +418,7 @@
     ]
   },
   {
-    "id": "dialog-16",
+    "id": "dialog-17",
     "indo": [
       "Oh iya, aku mau tanya. Kamu sibuk minggu depan?",
       "Nggak terlalu sibuk. Kenapa?",
@@ -444,7 +444,7 @@
     ]
   },
   {
-    "id": "dialog-17",
+    "id": "dialog-18",
     "indo": [
       "Eh, hidup di Bali mahal nggak menurut kamu?",
       "Tergantung sih. Bisa murah, bisa mahal.",
@@ -467,7 +467,7 @@
     ]
   },
   {
-    "id": "dialog-18",
+    "id": "dialog-19",
     "indo": [
       "Aduh, aku baru ingat. Aku ketinggalan dompet di warung tadi!",
       "Serius? Ayo balik sekarang!",
@@ -492,7 +492,7 @@
     ]
   },
   {
-    "id": "dialog-19",
+    "id": "dialog-20",
     "indo": [
       "Kamu punya rencana untuk tahun depan?",
       "Banyak. Aku mau selesaikan aplikasi yang aku bikin sekarang.",
@@ -522,7 +522,7 @@
     ]
   },
   {
-    "id": "dialog-20",
+    "id": "dialog-21",
     "indo": [
       "Aku mau tanya sesuatu. Kamu bisa bahasa lain selain bahasa Indonesia dan bahasa Inggris?",
       "Aku juga belajar bahasa Mandarin.",
@@ -545,7 +545,7 @@
     ]
   },
   {
-    "id": "dialog-21",
+    "id": "dialog-22",
     "indo": [
       "Kamu bilang kamu dari Romania. Indonesia beda banget ya sama Romania?",
       "Beda banget. Cuacanya beda. Makanannya beda. Budayanya beda. Semuanya beda.",
@@ -568,7 +568,7 @@
     ]
   },
   {
-    "id": "dialog-22",
+    "id": "dialog-23",
     "indo": [
       "Wah, sudah malam ya. Jam berapa sekarang?",
       "Sudah jam sepuluh malam.",
@@ -593,7 +593,7 @@
     ]
   },
   {
-    "id": "dialog-23",
+    "id": "dialog-24",
     "indo": [
       "Pagi! Kamu sudah sampai?",
       "Baru sampai. Kamu sudah lama di sini?",
@@ -626,7 +626,7 @@
     ]
   },
   {
-    "id": "dialog-24",
+    "id": "dialog-25",
     "indo": [
       "Hmm, aku pikir bahasa Indonesiaku sudah lebih baik dari sebelumnya.",
       "Iya, sudah jauh lebih bagus. Kamu harus bangga.",

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import type { Story } from "@/data/stories";
 import Sidebar from "@/components/Sidebar";
 import StoryText from "@/components/StoryText";
 import AudioPlayer from "@/components/AudioPlayer";
 import LanguageToggle from "@/components/LanguageToggle";
+import AutoplayToggle from "@/components/AutoplayToggle";
 import WordPopup from "@/components/WordPopup";
 import VocabReview from "@/components/VocabReview";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
@@ -17,6 +18,8 @@ interface StoryAppProps {
 export default function StoryApp({ stories }: StoryAppProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showEnglish, setShowEnglish] = useState(false);
+  const [autoplay, setAutoplay] = useState(false);
+  const autoplayTriggeredRef = useRef(false);
 
   const [showReview, setShowReview] = useState(false);
 
@@ -30,7 +33,28 @@ export default function StoryApp({ stories }: StoryAppProps) {
   } | null>(null);
 
   const story = stories[currentIndex];
-  const audio = useAudioPlayer(story.id);
+
+  const handleAudioEnded = useCallback(() => {
+    if (autoplay && currentIndex < stories.length - 1) {
+      autoplayTriggeredRef.current = true;
+      setCurrentIndex((prev) => prev + 1);
+      setShowReview(false);
+    }
+  }, [autoplay, currentIndex, stories.length]);
+
+  const audio = useAudioPlayer(story.id, handleAudioEnded);
+
+  // Auto-start playback when story changes due to autoplay
+  useEffect(() => {
+    if (autoplayTriggeredRef.current) {
+      autoplayTriggeredRef.current = false;
+      // Small delay to let the new audio load
+      const timer = setTimeout(() => {
+        audio.playPause();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleWordClick = useCallback(
     async (word: string, paragraphIndex: number) => {
@@ -87,10 +111,16 @@ export default function StoryApp({ stories }: StoryAppProps) {
         showEnglish={showEnglish}
         onSelect={handleSelectStory}
       >
-        <LanguageToggle
-          showEnglish={showEnglish}
-          onToggle={handleToggleLanguage}
-        />
+        <div className="toggle-group">
+          <LanguageToggle
+            showEnglish={showEnglish}
+            onToggle={handleToggleLanguage}
+          />
+          <AutoplayToggle
+            enabled={autoplay}
+            onToggle={() => setAutoplay((prev) => !prev)}
+          />
+        </div>
       </Sidebar>
       <main className={`main ${showEnglish && !showReview ? "main-dual" : ""}`}>
         {showEnglish && !showReview ? (

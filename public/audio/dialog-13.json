@@ -1,0 +1,623 @@
+{
+  "duration": 106.856,
+  "words": [
+    {
+      "word": "Nanti",
+      "start": 0,
+      "end": 0.383,
+      "paragraphIndex": 0
+    },
+    {
+      "word": "malam",
+      "start": 0.43,
+      "end": 0.65,
+      "paragraphIndex": 0
+    },
+    {
+      "word": "kamu",
+      "start": 0.697,
+      "end": 0.906,
+      "paragraphIndex": 0
+    },
+    {
+      "word": "ada",
+      "start": 0.952,
+      "end": 1.126,
+      "paragraphIndex": 0
+    },
+    {
+      "word": "acara?",
+      "start": 1.138,
+      "end": 1.602,
+      "paragraphIndex": 0
+    },
+    {
+      "word": "Belum",
+      "start": 4.786,
+      "end": 4.983,
+      "paragraphIndex": 1
+    },
+    {
+      "word": "ada",
+      "start": 5.03,
+      "end": 5.146,
+      "paragraphIndex": 1
+    },
+    {
+      "word": "rencana.",
+      "start": 5.169,
+      "end": 5.727,
+      "paragraphIndex": 1
+    },
+    {
+      "word": "Kenapa?",
+      "start": 6.028,
+      "end": 6.644,
+      "paragraphIndex": 1
+    },
+    {
+      "word": "Teman",
+      "start": 10.408,
+      "end": 10.629,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "aku",
+      "start": 10.687,
+      "end": 10.861,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "punya",
+      "start": 10.896,
+      "end": 11.082,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "acara",
+      "start": 11.105,
+      "end": 11.337,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "kecil",
+      "start": 11.383,
+      "end": 11.65,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "di",
+      "start": 11.709,
+      "end": 11.755,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "rumahnya.",
+      "start": 11.778,
+      "end": 12.312,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "Mau",
+      "start": 12.626,
+      "end": 12.753,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "datang?",
+      "start": 12.8,
+      "end": 13.357,
+      "paragraphIndex": 2
+    },
+    {
+      "word": "Acara",
+      "start": 18.201,
+      "end": 18.491,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "apa?",
+      "start": 18.538,
+      "end": 19.002,
+      "paragraphIndex": 3
+    },
+    {
+      "word": "Kumpul",
+      "start": 21.779,
+      "end": 22.139,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "biasa",
+      "start": 22.162,
+      "end": 22.371,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "aja.",
+      "start": 22.406,
+      "end": 22.882,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "Makan",
+      "start": 23.056,
+      "end": 23.277,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "bareng,",
+      "start": 23.311,
+      "end": 23.799,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "ngobrol,",
+      "start": 23.903,
+      "end": 24.391,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "dengerin",
+      "start": 24.484,
+      "end": 24.739,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "musik.",
+      "start": 24.763,
+      "end": 25.192,
+      "paragraphIndex": 4
+    },
+    {
+      "word": "Kedengarannya",
+      "start": 30.338,
+      "end": 30.825,
+      "paragraphIndex": 5
+    },
+    {
+      "word": "enak.",
+      "start": 30.872,
+      "end": 31.266,
+      "paragraphIndex": 5
+    },
+    {
+      "word": "Jam",
+      "start": 31.545,
+      "end": 31.708,
+      "paragraphIndex": 5
+    },
+    {
+      "word": "berapa",
+      "start": 31.742,
+      "end": 32.056,
+      "paragraphIndex": 5
+    },
+    {
+      "word": "mulai?",
+      "start": 32.102,
+      "end": 32.555,
+      "paragraphIndex": 5
+    },
+    {
+      "word": "Mulai",
+      "start": 36.807,
+      "end": 37.097,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "jam",
+      "start": 37.144,
+      "end": 37.26,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "tujuh",
+      "start": 37.318,
+      "end": 37.585,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "malam.",
+      "start": 37.62,
+      "end": 38.084,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "Tapi",
+      "start": 38.27,
+      "end": 38.56,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "santai,",
+      "start": 38.606,
+      "end": 39.222,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "datang",
+      "start": 39.373,
+      "end": 39.582,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "kapan",
+      "start": 39.616,
+      "end": 39.814,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "aja",
+      "start": 39.86,
+      "end": 40.023,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "boleh.",
+      "start": 40.058,
+      "end": 40.476,
+      "paragraphIndex": 6
+    },
+    {
+      "word": "Di",
+      "start": 46.887,
+      "end": 46.992,
+      "paragraphIndex": 7
+    },
+    {
+      "word": "mana",
+      "start": 47.038,
+      "end": 47.247,
+      "paragraphIndex": 7
+    },
+    {
+      "word": "rumahnya?",
+      "start": 47.294,
+      "end": 47.828,
+      "paragraphIndex": 7
+    },
+    {
+      "word": "Di",
+      "start": 50.884,
+      "end": 51,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "belakang",
+      "start": 51.059,
+      "end": 51.442,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "warung",
+      "start": 51.5,
+      "end": 51.802,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "yang",
+      "start": 51.883,
+      "end": 52.011,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "tadi.",
+      "start": 52.069,
+      "end": 52.684,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "Kamu",
+      "start": 52.939,
+      "end": 53.172,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "tahu",
+      "start": 53.218,
+      "end": 53.38,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "gang",
+      "start": 53.439,
+      "end": 53.578,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "kecil",
+      "start": 53.613,
+      "end": 53.845,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "itu?",
+      "start": 53.891,
+      "end": 54.263,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "Masuk",
+      "start": 54.565,
+      "end": 54.925,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "gang",
+      "start": 54.96,
+      "end": 55.099,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "itu,",
+      "start": 55.157,
+      "end": 55.575,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "rumah",
+      "start": 55.889,
+      "end": 56.144,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "yang",
+      "start": 56.19,
+      "end": 56.295,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "kedua",
+      "start": 56.33,
+      "end": 56.608,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "di",
+      "start": 56.643,
+      "end": 56.713,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "kiri.",
+      "start": 56.748,
+      "end": 57.143,
+      "paragraphIndex": 8
+    },
+    {
+      "word": "Oh,",
+      "start": 64.935,
+      "end": 65.167,
+      "paragraphIndex": 9
+    },
+    {
+      "word": "aku",
+      "start": 65.202,
+      "end": 65.376,
+      "paragraphIndex": 9
+    },
+    {
+      "word": "tahu.",
+      "start": 65.434,
+      "end": 66.119,
+      "paragraphIndex": 9
+    },
+    {
+      "word": "Deket",
+      "start": 66.386,
+      "end": 66.746,
+      "paragraphIndex": 9
+    },
+    {
+      "word": "ya.",
+      "start": 66.862,
+      "end": 67.106,
+      "paragraphIndex": 9
+    },
+    {
+      "word": "Iya,",
+      "start": 71.183,
+      "end": 71.589,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "dekat",
+      "start": 71.845,
+      "end": 72.077,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "banget.",
+      "start": 72.135,
+      "end": 72.472,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "Jalan",
+      "start": 72.506,
+      "end": 72.75,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "kaki",
+      "start": 72.797,
+      "end": 72.994,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "aja",
+      "start": 73.029,
+      "end": 73.168,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "bisa.",
+      "start": 73.203,
+      "end": 73.69,
+      "paragraphIndex": 10
+    },
+    {
+      "word": "Aku",
+      "start": 77.977,
+      "end": 78.175,
+      "paragraphIndex": 11
+    },
+    {
+      "word": "perlu",
+      "start": 78.21,
+      "end": 78.372,
+      "paragraphIndex": 11
+    },
+    {
+      "word": "bawa",
+      "start": 78.419,
+      "end": 78.593,
+      "paragraphIndex": 11
+    },
+    {
+      "word": "apa?",
+      "start": 78.628,
+      "end": 79.046,
+      "paragraphIndex": 11
+    },
+    {
+      "word": "Nggak",
+      "start": 82.299,
+      "end": 82.485,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "usah",
+      "start": 82.497,
+      "end": 82.706,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "bawa",
+      "start": 82.729,
+      "end": 82.88,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "apa-apa.",
+      "start": 82.903,
+      "end": 83.588,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "Tapi",
+      "start": 83.844,
+      "end": 84.111,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "kalau",
+      "start": 84.157,
+      "end": 84.32,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "mau",
+      "start": 84.354,
+      "end": 84.436,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "bawa",
+      "start": 84.459,
+      "end": 84.61,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "minuman,",
+      "start": 84.645,
+      "end": 85.086,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "boleh.",
+      "start": 85.179,
+      "end": 85.62,
+      "paragraphIndex": 12
+    },
+    {
+      "word": "Oke,",
+      "start": 90.8,
+      "end": 91.195,
+      "paragraphIndex": 13
+    },
+    {
+      "word": "aku",
+      "start": 91.241,
+      "end": 91.427,
+      "paragraphIndex": 13
+    },
+    {
+      "word": "bawa",
+      "start": 91.473,
+      "end": 91.636,
+      "paragraphIndex": 13
+    },
+    {
+      "word": "bir",
+      "start": 91.682,
+      "end": 91.833,
+      "paragraphIndex": 13
+    },
+    {
+      "word": "aja.",
+      "start": 91.891,
+      "end": 92.344,
+      "paragraphIndex": 13
+    },
+    {
+      "word": "Siap.",
+      "start": 96.268,
+      "end": 96.767,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "Sampai",
+      "start": 97.011,
+      "end": 97.278,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "ketemu",
+      "start": 97.301,
+      "end": 97.603,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "nanti",
+      "start": 97.638,
+      "end": 97.905,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "malam",
+      "start": 97.963,
+      "end": 98.207,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "ya.",
+      "start": 98.323,
+      "end": 98.59,
+      "paragraphIndex": 14
+    },
+    {
+      "word": "Sampai",
+      "start": 103.524,
+      "end": 103.966,
+      "paragraphIndex": 15
+    },
+    {
+      "word": "nanti!",
+      "start": 104.024,
+      "end": 104.79,
+      "paragraphIndex": 15
+    }
+  ]
+}

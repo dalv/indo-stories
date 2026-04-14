@@ -14,9 +14,15 @@ interface AlignmentData {
 
 const SPEEDS = [0.7, 0.85, 1, 1.2];
 
-export function useAudioPlayer(storyId: string) {
+export function useAudioPlayer(storyId: string, onEnded?: () => void) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const alignmentRef = useRef<AlignmentData | null>(null);
+  const onEndedRef = useRef(onEnded);
+
+  // Keep ref in sync with latest callback
+  useEffect(() => {
+    onEndedRef.current = onEnded;
+  }, [onEnded]);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -37,6 +43,7 @@ export function useAudioPlayer(storyId: string) {
     });
     audio.addEventListener("ended", () => {
       setIsPlaying(false);
+      onEndedRef.current?.();
     });
     audio.addEventListener("pause", () => {
       setIsPlaying(false);

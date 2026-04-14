@@ -38,6 +38,7 @@ body{min-height:100vh;display:flex;background:#f4f1ec;font-family:var(--font-lor
 .story p:last-child{margin-bottom:0}
 
 /* Language toggle */
+.toggle-group{display:flex;align-items:center;gap:0.5rem}
 .lang-pill{display:flex;background:#f0e8dc;border-radius:8px;border:none;padding:2px;cursor:pointer;gap:1px;flex-shrink:0}
 .lang-pill-option{font-family:var(--font-dm-sans),sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.04em;padding:0.25rem 0.55rem;border-radius:6px;color:#b0a393;transition:all 0.2s}
 .lang-pill-option.active{background:#fffdf9;color:#3a2e24;box-shadow:0 1px 2px rgba(0,0,0,0.08)}

@@ -20,7 +20,7 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-const VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel
+const VOICE_ID = "Y5oW6g8hng3zAbclT1hH"; // Shea Momogi - Calm, Soothing and Warm
 const MODEL_ID = "eleven_multilingual_v2";
 
 // Silence durations (seconds)
@@ -69,9 +69,9 @@ async function generateLine(
         model_id: MODEL_ID,
         language_code: "id",
         voice_settings: {
-          stability: 0.5,
+          stability: 0.4,
           similarity_boost: 0.75,
-          style: 0.3,
+          style: 0.45,
         },
       }),
     }

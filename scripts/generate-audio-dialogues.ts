@@ -20,11 +20,12 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-const VOICE_ID = "Y5oW6g8hng3zAbclT1hH"; // Shea Momogi - Calm, Soothing and Warm
+const VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel
 const MODEL_ID = "eleven_multilingual_v2";
 
-// Minimum gap (seconds) between different lines. If shorter, ffmpeg pads with silence.
-const MIN_LINE_GAP = 1.5;
+// Silence durations (seconds)
+const PAUSE_BETWEEN_READINGS = 0.8; // pause between 1st and 2nd reading of same line
+const PAUSE_BETWEEN_LINES = 1.5;    // pause between different lines
 
 interface Story {
   id: string;
@@ -38,11 +39,10 @@ interface AlignmentWord {
   paragraphIndex: number;
 }
 
-interface SectionWord {
-  word: string;
-  start: number;
-  end: number;
-  section: number;
+interface LineAudio {
+  mp3Path: string;
+  duration: number;
+  words: { word: string; start: number; end: number }[];
 }
 
 function loadStories(): Story[] {
@@ -50,8 +50,77 @@ function loadStories(): Story[] {
   return JSON.parse(readFileSync(dataPath, "utf-8"));
 }
 
+/** Call ElevenLabs for a single line of text. Returns mp3 buffer + word alignment. */
+async function generateLine(
+  text: string,
+  tempDir: string,
+  label: string
+): Promise<{ buffer: Buffer; duration: number; words: { word: string; start: number; end: number }[] }> {
+  const response = await fetch(
+    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/with-timestamps`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "xi-api-key": API_KEY,
+      },
+      body: JSON.stringify({
+        text,
+        model_id: MODEL_ID,
+        language_code: "id",
+        voice_settings: {
+          stability: 0.5,
+          similarity_boost: 0.75,
+          style: 0.3,
+        },
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`API error for ${label}: ${response.status} ${err}`);
+  }
+
+  const data = await response.json();
+  const { audio_base64, alignment } = data;
+  const buffer = Buffer.from(audio_base64, "base64");
+
+  // Parse character-level alignment into words
+  const chars: string[] = alignment.characters;
+  const starts: number[] = alignment.character_start_times_seconds;
+  const ends: number[] = alignment.character_end_times_seconds;
+
+  const words: { word: string; start: number; end: number }[] = [];
+  let currentWord = "";
+  let wordStart = -1;
+  let wordEnd = -1;
+
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    if (/\s/.test(ch) || ch === "\n") {
+      if (currentWord) {
+        words.push({ word: currentWord, start: wordStart, end: wordEnd });
+        currentWord = "";
+        wordStart = -1;
+      }
+    } else {
+      if (!currentWord) wordStart = starts[i];
+      currentWord += ch;
+      wordEnd = ends[i];
+    }
+  }
+  if (currentWord) {
+    words.push({ word: currentWord, start: wordStart, end: wordEnd });
+  }
+
+  const duration = ends.length > 0 ? ends[ends.length - 1] : 0;
+  return { buffer, duration, words };
+}
+
 async function generateForStory(story: Story, force: boolean) {
   const outDir = join(process.cwd(), "public", "audio");
+  const tempDir = join(outDir, `_temp_${story.id}`);
   mkdirSync(outDir, { recursive: true });
 
   const mp3Path = join(outDir, `${story.id}.mp3`);
@@ -62,270 +131,127 @@ async function generateForStory(story: Story, force: boolean) {
     return;
   }
 
-  // Each line said twice: first reading, small pause, second reading, bigger pause before next line
-  // Text structure per line: "line\n<break 0.5s>\nline"
-  // Between lines: "\n<break 1.5s>\n"
-  //
-  // Section indices (incrementing on each \n):
-  //   0: line1 first reading  → CAPTURE (paragraphIndex 0)
-  //   1: <break 0.5s>
-  //   2: line1 second reading → SKIP
-  //   3: <break 1.5s>
-  //   4: line2 first reading  → CAPTURE (paragraphIndex 1)
-  //   ...
-  // Pattern: capture when section % 4 === 0, paragraphIndex = section / 4
+  mkdirSync(tempDir, { recursive: true });
 
-  const fullText = story.indo
-    .map((line) => `${line}\n<break time="0.5s" />\n${line}`)
-    .join('\n<break time="1.5s" />\n');
+  console.log(`  Generating "${story.id}" (${story.indo.length} lines, each line = 2 API calls)...`);
 
-  console.log(`  Calling ElevenLabs for "${story.id}" (${story.indo.length} lines)...`);
+  // For each line: generate twice (two separate API calls), collect alignment only from first
+  const segments: { file: string; duration: number }[] = [];
+  const allWords: AlignmentWord[] = [];
+  let timeOffset = 0;
 
-  const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/with-timestamps`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "xi-api-key": API_KEY,
-      },
-      body: JSON.stringify({
-        text: fullText,
-        model_id: MODEL_ID,
-        language_code: "id",
-        voice_settings: {
-          stability: 0.4,
-          similarity_boost: 0.75,
-          style: 0.45,
-        },
-      }),
-    }
-  );
+  for (let lineIdx = 0; lineIdx < story.indo.length; lineIdx++) {
+    const lineText = story.indo[lineIdx];
+    console.log(`    Line ${lineIdx + 1}/${story.indo.length}: "${lineText.substring(0, 50)}${lineText.length > 50 ? "..." : ""}"`);
 
-  if (!response.ok) {
-    const err = await response.text();
-    console.error(`  API error for ${story.id}: ${response.status} ${err}`);
-    return;
-  }
+    // First reading — capture word timestamps
+    const first = await generateLine(lineText, tempDir, `${story.id}-L${lineIdx}-R1`);
+    const firstPath = join(tempDir, `line${lineIdx}_r1.mp3`);
+    writeFileSync(firstPath, first.buffer);
+    segments.push({ file: firstPath, duration: first.duration });
 
-  const data = await response.json();
-  const { audio_base64, alignment } = data;
-
-  // Parse character-level alignment
-  const chars: string[] = alignment.characters;
-  const starts: number[] = alignment.character_start_times_seconds;
-  const ends: number[] = alignment.character_end_times_seconds;
-
-  const words: AlignmentWord[] = [];
-  const allWords: SectionWord[] = [];
-
-  let currentWord = "";
-  let wordStart = -1;
-  let wordEnd = -1;
-  let section = 0;
-  let insideTag = false;
-
-  function flushWord() {
-    if (!currentWord) return;
-    const entry: SectionWord = {
-      word: currentWord,
-      start: wordStart,
-      end: wordEnd,
-      section,
-    };
-    allWords.push(entry);
-    // Only capture first readings (section % 4 === 0)
-    if (section % 4 === 0) {
-      words.push({
-        word: currentWord,
-        start: wordStart,
-        end: wordEnd,
-        paragraphIndex: Math.floor(section / 4),
+    // Capture words with offset
+    for (const w of first.words) {
+      allWords.push({
+        word: w.word,
+        start: Math.round((timeOffset + w.start) * 1000) / 1000,
+        end: Math.round((timeOffset + w.end) * 1000) / 1000,
+        paragraphIndex: lineIdx,
       });
     }
-    currentWord = "";
-    wordStart = -1;
-  }
+    timeOffset += first.duration;
 
-  for (let i = 0; i < chars.length; i++) {
-    const ch = chars[i];
+    // Silence between readings
+    timeOffset += PAUSE_BETWEEN_READINGS;
 
-    if (ch === "<") {
-      flushWord();
-      insideTag = true;
-      continue;
-    }
-    if (insideTag) {
-      if (ch === ">") insideTag = false;
-      continue;
-    }
-    if (ch === "\n") {
-      flushWord();
-      section++;
-      continue;
-    }
-    if (/\s/.test(ch)) {
-      flushWord();
-    } else {
-      if (!currentWord) wordStart = starts[i];
-      currentWord += ch;
-      wordEnd = ends[i];
-    }
-  }
-  flushWord();
+    // Second reading — no word capture
+    const second = await generateLine(lineText, tempDir, `${story.id}-L${lineIdx}-R2`);
+    const secondPath = join(tempDir, `line${lineIdx}_r2.mp3`);
+    writeFileSync(secondPath, second.buffer);
+    segments.push({ file: secondPath, duration: second.duration });
+    timeOffset += second.duration;
 
-  console.log(
-    `  Parsed ${words.length} first-reading words, ${allWords.length} total words`
-  );
-
-  // Find gaps between lines:
-  // gap = end of second reading of line N (section N*4+2)
-  //     → start of first reading of line N+1 (section (N+1)*4)
-  const lineCount = story.indo.length;
-  interface GapInfo {
-    gapStart: number;
-    gapEnd: number;
-  }
-  const gaps: GapInfo[] = [];
-
-  for (let line = 0; line < lineCount - 1; line++) {
-    const secondReadingSection = line * 4 + 2;
-    const nextFirstSection = (line + 1) * 4;
-    const lastOfSecond = allWords
-      .filter((w) => w.section === secondReadingSection)
-      .pop();
-    const firstOfNext = allWords.find(
-      (w) => w.section === nextFirstSection
-    );
-    if (lastOfSecond && firstOfNext) {
-      gaps.push({ gapStart: lastOfSecond.end, gapEnd: firstOfNext.start });
+    // Silence between lines (except after last line)
+    if (lineIdx < story.indo.length - 1) {
+      timeOffset += PAUSE_BETWEEN_LINES;
     }
   }
 
-  const rawDuration = ends.length > 0 ? ends[ends.length - 1] : 0;
+  const totalDuration = Math.round(timeOffset * 1000) / 1000;
 
-  // Log gap info
-  for (let i = 0; i < gaps.length; i++) {
-    const g = gaps[i];
-    const dur = (g.gapEnd - g.gapStart).toFixed(2);
-    const status = g.gapEnd - g.gapStart < MIN_LINE_GAP ? " (will pad)" : "";
-    console.log(`  Gap after line ${i}: ${dur}s${status}`);
-  }
+  // Get audio properties from first segment
+  const probeJson = execSync(
+    `ffprobe -v quiet -print_format json -show_streams "${segments[0].file}"`
+  ).toString();
+  const streams = JSON.parse(probeJson).streams;
+  const sampleRate = streams[0]?.sample_rate || "44100";
 
-  // Check if ffmpeg padding is needed
-  const needsPadding = gaps.some(
-    (g) => g.gapEnd - g.gapStart < MIN_LINE_GAP
-  );
+  // Build ffmpeg concat with silence gaps
+  // For each segment, add the audio file then a silence gap
+  const filterParts: string[] = [];
+  const concatLabels: string[] = [];
+  const inputFiles: string[] = [];
 
-  if (needsPadding) {
-    console.log(`  Padding short gaps with ffmpeg...`);
+  let inputIdx = 0;
+  for (let lineIdx = 0; lineIdx < story.indo.length; lineIdx++) {
+    // First reading
+    const r1Idx = inputIdx++;
+    inputFiles.push(segments[lineIdx * 2].file);
+    filterParts.push(`[${r1Idx}]asetpts=PTS-STARTPTS[a${r1Idx}]`);
+    concatLabels.push(`[a${r1Idx}]`);
 
-    const tempMp3 = join(outDir, `${story.id}_raw.mp3`);
-    writeFileSync(tempMp3, Buffer.from(audio_base64, "base64"));
-
-    // Get sample rate from the generated audio
-    const probeJson = execSync(
-      `ffprobe -v quiet -print_format json -show_streams "${tempMp3}"`
-    ).toString();
-    const streams = JSON.parse(probeJson).streams;
-    const sampleRate = streams[0]?.sample_rate || "44100";
-    const channelLayout = streams[0]?.channel_layout || "mono";
-
-    // Build cut points at gap midpoints with silence durations
-    const cuts: { time: number; silenceDur: number }[] = [];
-    for (const gap of gaps) {
-      const mid =
-        Math.round(((gap.gapStart + gap.gapEnd) / 2) * 1000) / 1000;
-      const existing = gap.gapEnd - gap.gapStart;
-      const needed = Math.max(
-        0,
-        Math.round((MIN_LINE_GAP - existing) * 1000) / 1000
-      );
-      cuts.push({ time: mid, silenceDur: needed });
-    }
-
-    // Build ffmpeg filter_complex
-    const filterParts: string[] = [];
-    const concatLabels: string[] = [];
-    let prev = 0;
-
-    for (let i = 0; i < cuts.length; i++) {
-      const cut = cuts[i];
-      filterParts.push(
-        `[0]atrim=${prev}:${cut.time},asetpts=PTS-STARTPTS[s${i}]`
-      );
-      concatLabels.push(`[s${i}]`);
-
-      if (cut.silenceDur > 0) {
-        filterParts.push(
-          `anullsrc=r=${sampleRate}:cl=${channelLayout},atrim=duration=${cut.silenceDur},asetpts=PTS-STARTPTS[g${i}]`
-        );
-        concatLabels.push(`[g${i}]`);
-      }
-      prev = cut.time;
-    }
-
-    // Last segment
+    // Silence between readings
+    const silR = `sr${lineIdx}`;
     filterParts.push(
-      `[0]atrim=${prev},asetpts=PTS-STARTPTS[slast]`
+      `anullsrc=r=${sampleRate}:cl=mono,atrim=duration=${PAUSE_BETWEEN_READINGS},asetpts=PTS-STARTPTS[${silR}]`
     );
-    concatLabels.push(`[slast]`);
+    concatLabels.push(`[${silR}]`);
 
-    const fc =
-      filterParts.join(";") +
-      `;${concatLabels.join("")}concat=n=${concatLabels.length}:v=0:a=1[out]`;
+    // Second reading
+    const r2Idx = inputIdx++;
+    inputFiles.push(segments[lineIdx * 2 + 1].file);
+    filterParts.push(`[${r2Idx}]asetpts=PTS-STARTPTS[a${r2Idx}]`);
+    concatLabels.push(`[a${r2Idx}]`);
 
-    execSync(
-      `ffmpeg -y -i "${tempMp3}" -filter_complex '${fc}' -map "[out]" "${mp3Path}"`,
-      { stdio: "pipe" }
-    );
-    unlinkSync(tempMp3);
-
-    // Adjust word timestamps: for time T, add cumulative silence from all cut points before T
-    const totalAdded = cuts.reduce((sum, c) => sum + c.silenceDur, 0);
-
-    function adjustTime(t: number): number {
-      let offset = 0;
-      for (const cut of cuts) {
-        if (t >= cut.time) offset += cut.silenceDur;
-        else break;
-      }
-      return Math.round((t + offset) * 1000) / 1000;
+    // Silence between lines
+    if (lineIdx < story.indo.length - 1) {
+      const silL = `sl${lineIdx}`;
+      filterParts.push(
+        `anullsrc=r=${sampleRate}:cl=mono,atrim=duration=${PAUSE_BETWEEN_LINES},asetpts=PTS-STARTPTS[${silL}]`
+      );
+      concatLabels.push(`[${silL}]`);
     }
-
-    for (const w of words) {
-      w.start = adjustTime(w.start);
-      w.end = adjustTime(w.end);
-    }
-
-    const finalDuration =
-      Math.round((rawDuration + totalAdded) * 1000) / 1000;
-    const finalSize = readFileSync(mp3Path).length;
-    console.log(
-      `  Wrote ${mp3Path} (${(finalSize / 1024).toFixed(1)} KB)`
-    );
-    writeFileSync(
-      jsonPath,
-      JSON.stringify({ duration: finalDuration, words }, null, 2)
-    );
-    console.log(
-      `  Wrote ${jsonPath} (${words.length} words, ${story.indo.length} paragraphs, ${finalDuration.toFixed(1)}s)`
-    );
-  } else {
-    // No padding needed — write audio and alignment directly
-    const audioBuffer = Buffer.from(audio_base64, "base64");
-    writeFileSync(mp3Path, audioBuffer);
-    console.log(
-      `  Wrote ${mp3Path} (${(audioBuffer.length / 1024).toFixed(1)} KB)`
-    );
-    writeFileSync(
-      jsonPath,
-      JSON.stringify({ duration: rawDuration, words }, null, 2)
-    );
-    console.log(
-      `  Wrote ${jsonPath} (${words.length} words, ${story.indo.length} paragraphs, ${rawDuration.toFixed(1)}s)`
-    );
   }
+
+  const fc =
+    filterParts.join(";") +
+    `;${concatLabels.join("")}concat=n=${concatLabels.length}:v=0:a=1[out]`;
+
+  const inputArgs = inputFiles.map((f) => `-i "${f}"`).join(" ");
+
+  console.log(`  Concatenating ${inputFiles.length} audio segments with ffmpeg...`);
+  execSync(
+    `ffmpeg -y ${inputArgs} -filter_complex '${fc}' -map "[out]" "${mp3Path}"`,
+    { stdio: "pipe" }
+  );
+
+  // Clean up temp files
+  for (const seg of segments) {
+    if (existsSync(seg.file)) unlinkSync(seg.file);
+  }
+  try {
+    execSync(`rmdir "${tempDir}"`, { stdio: "pipe" });
+  } catch {}
+
+  const finalSize = readFileSync(mp3Path).length;
+  console.log(`  Wrote ${mp3Path} (${(finalSize / 1024).toFixed(1)} KB)`);
+
+  // Write alignment
+  const alignmentOut = { duration: totalDuration, words: allWords };
+  writeFileSync(jsonPath, JSON.stringify(alignmentOut, null, 2));
+  console.log(
+    `  Wrote ${jsonPath} (${allWords.length} words, ${story.indo.length} paragraphs, ${totalDuration.toFixed(1)}s)`
+  );
 }
 
 async function main() {
